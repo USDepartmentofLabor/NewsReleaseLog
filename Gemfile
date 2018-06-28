@@ -30,6 +30,12 @@ gem 'jbuilder', '~> 2.5'
 # Database
 gem 'mongoid', '~> 6.2.0'
 
+# Frontend web framework for styling
+gem 'bootstrap', '~> 4.1.1'
+
+# Addition dependency for bootstrap
+gem 'jquery-rails'
+
 #Authentication
 gem 'devise'
 
