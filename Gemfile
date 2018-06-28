@@ -39,6 +39,9 @@ gem 'jquery-rails'
 #Authentication
 gem 'devise'
 
+# Authorization
+gem 'pundit'
+
 #State machine
 gem 'aasm'
 
