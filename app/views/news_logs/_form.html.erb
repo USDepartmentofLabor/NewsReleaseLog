@@ -1,0 +1,47 @@
+<%= form_with(model: news_log, local: true) do |form| %>
+  <% if news_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(news_log.errors.count, "error") %> prohibited this news_log from being saved:</h2>
+
+      <ul>
+      <% news_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :received_date %>
+    <%= form.datetime_select :received_date, id: :news_log_received_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_date %>
+    <%= form.datetime_select :release_date, id: :news_log_release_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :news_log_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :news_log_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region_id %>
+    <%= form.text_field :region_id, id: :news_log_region_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :distributionlist_id %>
+    <%= form.text_field :distributionlist_id, id: :news_log_distributionlist_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

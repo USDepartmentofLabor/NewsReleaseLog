@@ -39,6 +39,9 @@ gem 'jquery-rails'
 #Authentication
 gem 'devise'
 
+#State machine
+gem 'aasm'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

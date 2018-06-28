@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Received date:</strong>
+  <%= @news_log.received_date %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @news_log.release_date %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @news_log.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @news_log.user %>
+</p>
+
+<p>
+  <strong>Agency:</strong>
+  <%= @news_log.agency %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @news_log.region %>
+</p>
+
+<p>
+  <strong>Distributionlist:</strong>
+  <%= @news_log.distributionlist %>
+</p>
+
+<%= link_to 'Edit', edit_news_log_path(@news_log) %> |
+<%= link_to 'Back', news_logs_path %>
