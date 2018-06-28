@@ -1,6 +1,8 @@
 *.rbc
 capybara-*.html
 .rspec
+*.DS_Store
+/dump
 /log
 /tmp
 /public/system
