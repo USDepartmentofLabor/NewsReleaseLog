@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="https://www.dol.gov"><%= image_tag  "logo.png" %></a>
+  <a class="navbar-brand text-light" href="/">DEPARTMENT OF LABOR - NEWS RELEASE LOG</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+    <% if user_signed_in? %>
+      <li class="nav-item"><%= link_to('NewLogs', news_logs_path, method: :get, class: 'text-light nav-link') %></li>
+    <% end %>
+    <!--
+    <%# if user_signed_in? %>
+      <%#if policy(NewsLog).create? %>
+        <li class="nav-item"><#%= link_to('Manage Users', users_path, method: :get, class: 'text-light nav-link') %></li>
+        <li class="nav-item"><#%= link_to('Audits', audits_users_path, method: :get, class: 'text-light nav-link') %></li>
+      <%# end %>
+    <%# end %>
+    -->
+    <% if user_signed_in? %>
+      <li class="nav-item"><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "text-light nav-link") %></li>
+    <% end %>
+    </ul>
+  </div>
+</nav>
+
