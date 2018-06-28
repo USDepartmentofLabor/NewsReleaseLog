@@ -1,4 +1,5 @@
 class NewsLogsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_news_log, only: [:show, :edit, :update, :destroy]
 
   # GET /news_logs
@@ -25,6 +26,8 @@ class NewsLogsController < ApplicationController
   # POST /news_logs.json
   def create
     @news_log = NewsLog.new(news_log_params)
+    @news_log.user = current_user
+    authorize NewsLog
 
     respond_to do |format|
       if @news_log.save
