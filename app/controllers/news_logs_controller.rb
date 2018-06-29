@@ -1,6 +1,7 @@
 class NewsLogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_news_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_form_data, only: [:new, :edit]
 
   # GET /news_logs
   # GET /news_logs.json
@@ -27,7 +28,7 @@ class NewsLogsController < ApplicationController
   def create
     @news_log = NewsLog.new(news_log_params)
     @news_log.user = current_user
-    authorize NewsLog
+    # authorize NewsLog
 
     respond_to do |format|
       if @news_log.save
@@ -70,8 +71,14 @@ class NewsLogsController < ApplicationController
       @news_log = NewsLog.find(params[:id])
     end
 
+    def set_form_data
+      @agency_hash ||= Hash[Region.all.map{|b| [b.name,b.id]}]
+      @region_hash ||= Hash[Agency.all.map{|b| [b.name,b.id]}]
+      @distributionlist_hash ||= Hash[Distributionlist.all.map{|b| [b.name,b.id]}]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_log_params
-      params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :distributionlist_id)
+      params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :distributionlist_ids)
     end
 end
