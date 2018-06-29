@@ -8,14 +8,14 @@ class NewsLog
   field :news_release_number, type: String
 
   # Associations
-  has_one :user
+  belongs_to :user
   has_one :agency
   has_one :region
-  has_many :distributionlist
+  has_many :distributionlists
 
   # Validations
-  validates_presence_of :name
-  validates_length_of :news_release_number, minimum: 11
+  validates_presence_of :title,:received_date
+  # validates_length_of :news_release_number, minimum: 11
 
   # State machine
   aasm do

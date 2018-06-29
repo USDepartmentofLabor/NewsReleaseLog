@@ -34,6 +34,7 @@ csv.each do |row|
   d.abbr=row['MediaAbbr']
   d.name=row['MediaDesc']
   d.status=row['Status']
+  d.save
   puts "#{d.name} saved"
 end
 

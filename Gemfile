@@ -32,6 +32,7 @@ gem 'mongoid', '~> 6.2.0'
 
 # Frontend web framework for styling
 gem 'bootstrap', '~> 4.1.1'
+gem 'formtastic', '~> 3.0'
 
 # Addition dependency for bootstrap
 gem 'jquery-rails'
