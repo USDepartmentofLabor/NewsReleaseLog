@@ -9,6 +9,18 @@ class NewsLogsController < ApplicationController
     @news_logs = NewsLog.order(:created_at => "DESC").page params[:page]
   end
 
+  def active_drafts
+    @news_logs = NewsLog.where(:aasm_state => "draft") #TODO add update_at between last 2 weeks 
+  end
+
+  def published
+    @news_logs = NewsLog.where(:aasm_state =>"published")
+  end
+
+  def drafts
+    @news_logs = NewsLog.where(:aasm_state =>"draft")
+  end
+
   # GET /news_logs/1
   # GET /news_logs/1.json
   def show
