@@ -46,6 +46,11 @@ gem 'pundit'
 #State machine
 gem 'aasm'
 
+# Add kaminari for pagination
+gem 'kaminari'
+gem 'kaminari-mongoid'
+gem 'kaminari-actionview'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
