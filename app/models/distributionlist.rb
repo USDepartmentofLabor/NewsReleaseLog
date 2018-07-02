@@ -1,5 +1,6 @@
 class Distributionlist
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :description, type: String
   field :status, type: String
   field :abbr, type: String
