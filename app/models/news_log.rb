@@ -7,12 +7,17 @@ class NewsLog
   field :release_date, type: Time
   field :title, type: String
   field :news_release_number, type: String
-
+  field :aasm_state
   # Associations
   belongs_to :user
   belongs_to :agency, optional: true
   belongs_to :region, optional: true
-  has_and_belongs_to_many :distributionlists 
+  has_and_belongs_to_many :distributionlists
+
+  scope :published, -> { where(aasm_state: 'published') }
+  scope :drafts, -> { where(aasm_state: 'draft') }
+  scope :active_drafts, -> { where(aasm_state: 'draft',:created_at.gt => 2.weeks.ago) }
+
 
   # Validations
   validates_presence_of :title,:received_date
