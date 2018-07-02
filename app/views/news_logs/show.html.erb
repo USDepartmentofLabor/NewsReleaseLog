@@ -17,22 +17,24 @@
 
 <p>
   <strong>User:</strong>
-  <%= @news_log.user %>
+  <%= @news_log.user.full_name %>
 </p>
 
 <p>
   <strong>Agency:</strong>
-  <%= @news_log.agency %>
+  <%= @news_log.agency.name %>
 </p>
 
 <p>
   <strong>Region:</strong>
-  <%= @news_log.region %>
+  <%= @news_log.region.name %>
 </p>
 
 <p>
   <strong>Distributionlist:</strong>
-  <%= @news_log.distributionlists %>
+  <% @news_log.distributionlists.each do |d| %>
+    <%=d.name%></br>
+  <%end%>
 </p>
 
 <%= link_to 'Edit', edit_news_log_path(@news_log) %> |
