@@ -22,12 +22,12 @@
 
 <p>
   <strong>Agency:</strong>
-  <%= @news_log.agency.name %>
+  <%= @news_log.agency.try(:name) %>
 </p>
 
 <p>
   <strong>Region:</strong>
-  <%= @news_log.region.name %>
+  <%= @news_log.region.try(:name) %>
 </p>
 
 <p>
