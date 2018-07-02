@@ -7,4 +7,9 @@ module ApplicationHelper
         when "alert" then "alert alert-warning"
     end
   end
+
+  def date_format(date)
+    return "" unless date
+    date.strftime("%m/%d/%Y")
+  end
 end
