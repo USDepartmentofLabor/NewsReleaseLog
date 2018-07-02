@@ -4,7 +4,7 @@ class DistributionlistsController < ApplicationController
   # GET /distributionlists
   # GET /distributionlists.json
   def index
-    @distributionlists = Distributionlist.all
+    @distributionlists = Distributionlist.order(:created_at => "DESC").page params[:page]
   end
 
   # GET /distributionlists/1

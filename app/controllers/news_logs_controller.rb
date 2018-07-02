@@ -6,7 +6,7 @@ class NewsLogsController < ApplicationController
   # GET /news_logs
   # GET /news_logs.json
   def index
-    @news_logs = NewsLog.all
+    @news_logs = NewsLog.order(:created_at => "DESC").page params[:page]
   end
 
   # GET /news_logs/1

@@ -1,5 +1,6 @@
 class NewsLog
   include Mongoid::Document
+  include Mongoid::Timestamps
   include AASM
   # Fields
   field :received_date, type: Time
