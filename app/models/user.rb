@@ -43,6 +43,7 @@ class User
   has_many :news_logs
 
   validates_presence_of :first_name,:last_name
+  attr_accessor :skip_password_validation
 
   def initials
     first_name[0,1]+last_name[0,1] || "Unknown"
@@ -50,6 +51,13 @@ class User
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  private
+
+  def password_required?
+    return false if skip_password_validation
+    super
   end
 
 end
