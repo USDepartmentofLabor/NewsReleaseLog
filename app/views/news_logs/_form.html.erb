@@ -1,13 +1,11 @@
-<%= semantic_form_for @news_log do |f| %>
+<%= semantic_form_for news_log do |f| %>
     <%= f.inputs do %>
       <%= f.input :title %>
       <%= f.input :region, :as => :select, :collection => @region_hash %>
       <%= f.input :agency, :as => :select, :collection => @agency_hash %>
       <%= f.input :received_date%>
       <%= f.input :release_date%>
-      <%= f.inputs do %>
-        <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>
-      <% end %>
+      <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>
     <% end %>
     <%= f.actions do %>
       <%= f.action :submit, :as => :button %>
