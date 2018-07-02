@@ -9,9 +9,9 @@ class NewsLog
 
   # Associations
   belongs_to :user
-  has_one :agency
-  has_one :region
-  has_many :distributionlists
+  belongs_to :agency, optional: true
+  belongs_to :region, optional: true
+  has_and_belongs_to_many :distributionlists 
 
   # Validations
   validates_presence_of :title,:received_date

@@ -36,5 +36,5 @@ class User
   field :admin,           type: Boolean, default: false
 
   # Associations
-  has_one :news_log
+  has_many :news_logs
 end
