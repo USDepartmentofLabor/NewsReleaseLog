@@ -14,6 +14,11 @@ class NewsLog
   belongs_to :region, optional: true
   has_and_belongs_to_many :distributionlists
 
+  scope :published, -> { where(aasm_state: 'published') }
+  scope :drafts, -> { where(aasm_state: 'draft') }
+  scope :active_drafts, -> { where(aasm_state: 'draft',:created_at.gt => 2.weeks.ago) }
+
+
   # Validations
   validates_presence_of :title,:received_date
   # validates_length_of :news_release_number, minimum: 11

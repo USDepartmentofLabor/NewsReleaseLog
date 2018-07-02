@@ -2,7 +2,6 @@ class NewsLogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_news_log, only: [:show, :edit, :update, :destroy]
   before_action :set_form_data, only: [:new, :edit]
-
   # GET /news_logs
   # GET /news_logs.json
   def index
@@ -10,15 +9,15 @@ class NewsLogsController < ApplicationController
   end
 
   def active_drafts
-    @news_logs = NewsLog.where(:aasm_state => "draft") #TODO add update_at between last 2 weeks 
+    @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
   end
 
   def published
-    @news_logs = NewsLog.where(:aasm_state =>"published")
+    @news_logs = NewsLog.published
   end
 
   def drafts
-    @news_logs = NewsLog.where(:aasm_state =>"draft")
+    @news_logs = NewsLog.drafts
   end
 
   # GET /news_logs/1
