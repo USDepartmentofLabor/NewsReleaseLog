@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :distributionlists
   resources :regions
   resources :agencies
   resources :news_logs

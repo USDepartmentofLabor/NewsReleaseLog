@@ -1,0 +1,14 @@
+<p><strong>Name</strong></p>
+<p><%= @distributionlist.name %></p>
+
+<p><strong>Abbreviation</strong></p>
+<p><%= @distributionlist.abbr %></p>
+
+<p><strong>Status</strong></p>
+<p><%= @distributionlist.status %></p>
+
+<p><strong>Description</strong></p>
+<p><%= @distributionlist.description %></p>
+
+<%= link_to 'Edit', edit_distributionlist_path(@distributionlist) %> |
+<%= link_to 'Back', distributionlists_path %>
