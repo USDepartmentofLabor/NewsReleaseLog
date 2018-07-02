@@ -4,7 +4,7 @@ class RegionsController < ApplicationController
   # GET /regions
   # GET /regions.json
   def index
-    @regions = Region.all
+    @regions = Region.order(:created_at => "DESC").page params[:page]
   end
 
   # GET /regions/1
