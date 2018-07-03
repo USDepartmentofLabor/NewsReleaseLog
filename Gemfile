@@ -54,6 +54,9 @@ gem 'kaminari-actionview'
 # Bootstrap datepicker gem
 gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 
+# Auditing mongodb documents
+gem 'mongoid-history'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
