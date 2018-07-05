@@ -17,10 +17,12 @@
   <body>
     <div class="container">
       <%= render 'layouts/header' %>
+      <%= render 'layouts/menu' %>
       <% flash.each do |key, value| %>
         <div class="<%= flash_class(key) %>"><%= value %></div>
       <% end %>
       <%= yield %>
+      </br></br>
       <%= render 'layouts/footer' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     </div>
