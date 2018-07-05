@@ -33,12 +33,24 @@
 }
 
 .navbar{
-  background-color: #990000;
+ background-color: #990000;
+}
+
+.subnavbar{
+ background-color: #00000;
 }
 
 .navbar-brand {
  color: white;
 }
+
+.nav a{
+    color: white !important;
+    font-size: 1.8em !important;
+    }
+.nav li{
+    padding-right:5px;
+   }
 
 //////////////////////////////////////
 // Styling for pagination
