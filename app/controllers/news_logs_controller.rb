@@ -65,7 +65,7 @@ class NewsLogsController < ApplicationController
   # PATCH/PUT /news_logs/1.json
   def update
     respond_to do |format|
-      if @news_log.update(news_log_params)
+      if @news_log.update(news_logs_update_params)
         format.html { redirect_to @news_log, notice: 'News log was successfully updated.' }
         format.json { render :show, status: :ok, location: @news_log }
       else
@@ -102,5 +102,12 @@ class NewsLogsController < ApplicationController
       new_params= params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :document, :distributionlist_ids =>[])
       new_params[:received_date] = DateTime.parse(new_params[:received_date],"%mm/%dd/%yyyy") unless new_params[:received_date].blank?
       new_params
+    end
+
+    def news_logs_update_params
+      update_params = params.require(:news_log).permit(:release_date, :title, :user_id, :agency_id, :region_id, :distributionlist_ids =>[])
+      new_state = params[:to].try(:keys).first
+      update_params[:aasm_state] = params[:to].try(:keys).first if new_state && NewsLog.aasm.states.map(&:name).include?(new_state.to_sym)
+      update_params
     end
 end
