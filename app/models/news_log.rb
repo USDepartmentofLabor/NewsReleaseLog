@@ -5,8 +5,8 @@ class NewsLog
   include Mongoid::History::Trackable
 
   # Fields
-  field :received_date, type: Time
-  field :release_date, type: Time
+  field :received_date, type: Date
+  field :release_date, type: Date
   field :title, type: String
   field :news_release_number, type: String
   field :aasm_state
@@ -33,7 +33,7 @@ class NewsLog
 
 
   # Validations
-  validates_presence_of :title, :received_date
+  validates_presence_of :title, :region
   validates_uniqueness_of :news_release_number
   # validates_length_of :news_release_number, minimum: 11
 
@@ -61,13 +61,9 @@ class NewsLog
 
   private
   def assign_nrl_number
-    unless self.new_record?
-      max_opa_id = NewsLog.where(:created_at.gte => Time.now.beginning_of_year ,:created_at.lte => Time.now.end_of_year).max(:opa_id)
-      max_opa_id.present? ? self.opa_id = max_opa_id + 1 : self.opa_id = 1
-      self.news_release_number = "#{Date.current.strftime("%y")}-#{self.opa_id.to_s.rjust(5, '0')}-#{region.code}"
-    end
+    return unless self.new_record?
+    max_opa_id = NewsLog.where(:created_at.gte => Time.now.beginning_of_year ,:created_at.lte => Time.now.end_of_year).max(:opa_id)
+    max_opa_id.present? ? self.opa_id = max_opa_id + 1 : self.opa_id = 1
+    self.news_release_number = "#{Date.current.strftime("%y")}-#{self.opa_id.to_s.rjust(5, '0')}-#{region.code}"
   end
-
-
-
 end

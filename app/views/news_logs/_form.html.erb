@@ -3,8 +3,8 @@
       <%= f.input :title %>
       <%= f.input :region, :as => :select, :collection => @region_hash %>
       <%= f.input :agency, :as => :select, :collection => @agency_hash %>
-      <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' }%>
-      <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker' }%>
+      <%= f.input :received_date, input_html: {  type: 'text', class: 'datepicker'}%>
+      <%= f.input :release_date, input_html: { type: 'text', class: 'datepicker' }%>
       <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>
     <% end %>
     <%= f.actions do %>
