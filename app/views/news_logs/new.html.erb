@@ -1,3 +1,5 @@
-<h1>Create News Release</h1>
-
+<h1>New News Log</h1>
+<%= form_errors_for @news_log %>
 <%= render 'form', news_log: @news_log %>
+
+<%= link_to 'Back', news_logs_path %>
