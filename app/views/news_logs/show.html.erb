@@ -1,13 +1,16 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <strong>News Release Number:</strong>
+  <%= @news_log.news_release_number %>
+</p>
 <p>
   <strong>Received date:</strong>
-  <%= @news_log.received_date %>
+  <%= date_format @news_log.received_date %>
 </p>
 
 <p>
   <strong>Release date:</strong>
-  <%= @news_log.release_date %>
+  <%= date_format @news_log.release_date %>
 </p>
 
 <p>
@@ -37,5 +40,5 @@
   <%end%>
 </p>
 
-<%= link_to 'Edit', edit_news_log_path(@news_log) %> |
-<%= link_to 'Back', news_logs_path %>
+<%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-primary" %>
+<%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>

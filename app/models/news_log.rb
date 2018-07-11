@@ -61,11 +61,10 @@ class NewsLog
 
   private
   def assign_nrl_number
-    unless self.new_record?
-      max_opa_id = NewsLog.where(:created_at.gte => Time.now.beginning_of_year ,:created_at.lte => Time.now.end_of_year).max(:opa_id)
-      max_opa_id.present? ? self.opa_id = max_opa_id + 1 : self.opa_id = 1
-      self.news_release_number = "#{Date.current.strftime("%y")}-#{self.opa_id.to_s.rjust(5, '0')}-#{region.code}"
-    end
+    return unless self.new_record?
+    max_opa_id = NewsLog.where(:created_at.gte => Time.now.beginning_of_year ,:created_at.lte => Time.now.end_of_year).max(:opa_id)
+    max_opa_id.present? ? self.opa_id = max_opa_id + 1 : self.opa_id = 1
+    self.news_release_number = "#{Date.current.strftime("%y")}-#{self.opa_id.to_s.rjust(5, '0')}-#{region.code}"
   end
 
 

@@ -1,14 +1,20 @@
 <%= semantic_form_for news_log do |f| %>
     <%= f.inputs do %>
       <%= f.input :title %>
+      <% if !f.object.new_record? %>
+        <%= f.input :news_release_number, :input_html => { :disabled => true } %>
+      <%end%>
       <%= f.input :region, :as => :select, :collection => @region_hash %>
       <%= f.input :agency, :as => :select, :collection => @agency_hash %>
-      <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' }%>
+      <% if f.object.new_record? %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' }%>
+      <% else %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' ,:disabled => true } %>
+      <%end%>
       <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker' }%>
       <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>
     <% end %>
     <%= f.actions do %>
-      <%= f.action :submit, :as => :button , :input_html => {:class => "btn btn-primary"}%>
-      <%= f.action :cancel, :as => :link , :url => "/" %>
+      <%= news_log_buttons(f,news_log) %>
     <% end %>
   <% end %>
