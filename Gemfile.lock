@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     aasm (4.12.3)
       concurrent-ruby (~> 1.0)
