@@ -91,7 +91,7 @@ class NewsLogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_log_params
       new_params= params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :distributionlist_ids =>[])
-      new_params[:received_date] = DateTime.parse(new_params[:received_date],"%mm/%dd/%yyyy") if new_params[:received_date]
+      new_params[:received_date] = DateTime.parse(new_params[:received_date],"%mm/%dd/%yyyy") unless new_params[:received_date].blank?
       new_params
     end
 end
