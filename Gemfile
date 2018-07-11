@@ -34,6 +34,9 @@ gem 'mongoid', '~> 6.2.0'
 gem 'bootstrap', '~> 4.1.1'
 gem 'formtastic', '~> 3.0'
 
+#adding font awesome
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
+
 # Addition dependency for bootstrap
 gem 'jquery-rails'
 
