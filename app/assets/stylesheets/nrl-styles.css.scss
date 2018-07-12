@@ -35,23 +35,22 @@
 .navbar{
   background-color: #990000;
 }
+
 .nav-link{
   font-size:1rem;
   color: #fff;
+  text-decoration: none;
 }
 
 .subnavbar{
-  background-color: #00000;
+  background-color: #000000;
 }
 
 .navbar-brand {
   color: white;
 }
 
-.nav a{
-  color: white !important;
-  font-size: 1.8em !important;
-    }
+
 .nav li{
   padding-right:5px;
 }
@@ -109,5 +108,17 @@
 
 .custom-button {
   width: 10em;
+  border-radius: 0;
+}
+
+////////////////////////////////
+
+.nav-link {
+  border-bottom: 2px solid transparent; 
+}
+
+.nav-link:hover {
+  color: #fff;
+  border-bottom: 2px solid #fff;
   border-radius: 0;
 }

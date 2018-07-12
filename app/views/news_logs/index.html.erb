@@ -1,4 +1,5 @@
 <h1>News Logs</h1>
+<%= link_to 'New News Log', new_news_log_path,class: "btn btn-primary" %>
 
 <table class="table table-striped">
   <thead>
@@ -33,5 +34,4 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'New News Log', new_news_log_path,class: "btn btn-primary" %>
 <%= paginate @news_logs %>
