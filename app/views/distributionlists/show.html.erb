@@ -1,14 +1,24 @@
-<p><strong>Name</strong></p>
-<p><%= @distributionlist.name %></p>
+<h1> Distributionlist </h1>
 
-<p><strong>Abbreviation</strong></p>
-<p><%= @distributionlist.abbr %></p>
+<p>
+  <strong>Distribution Name:</strong>
+  <%= @distributionlist.name %></p>
+</p>
 
-<p><strong>Status</strong></p>
-<p><%= @distributionlist.status %></p>
+<p>
+  <strong>Abbreviation:</strong>
+  <%= @distributionlist.abbr %>
+</p>
 
-<p><strong>Description</strong></p>
-<p><%= @distributionlist.description %></p>
+<p>
+  <strong>Status:</strong>
+  <%= @distributionlist.status %>
+</p>
 
-<%= link_to 'Edit', edit_distributionlist_path(@distributionlist) %> |
-<%= link_to 'Back', distributionlists_path %>
+<p>
+  <strong>Description</strong>
+  <%= @distributionlist.description %>
+</p>
+
+<%= link_to 'Back', distributionlists_path, class: 'btn btn-dark btn-sm custom-button' %>
+<%= link_to 'Edit', edit_distributionlist_path(@distributionlist), class: 'btn btn-dark btn-sm custom-button'  %>
