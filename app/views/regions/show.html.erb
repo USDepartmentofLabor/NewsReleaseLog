@@ -6,5 +6,11 @@
   <strong>Region Name:</strong>
   <%= @region.name %>
 </p>
-<%= link_to 'Edit', edit_region_path(@region) %> |
-<%= link_to 'Back', regions_path %>
+
+<p>
+  <strong>Region Code:</strong>
+  <%= @region.code %>
+</p>
+
+<%= link_to 'Edit', edit_region_path(@region), class: 'btn btn-dark btn-sm custom-button' %> 
+<%= link_to 'Back', regions_path, class: 'btn btn-dark btn-sm custom-button' %>
