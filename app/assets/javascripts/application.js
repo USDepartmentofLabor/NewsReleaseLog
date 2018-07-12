@@ -16,4 +16,10 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 
+$(document).ready(function(){
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    startDate: '-3d'
+  });
+});
 
