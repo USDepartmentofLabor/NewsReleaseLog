@@ -2,7 +2,7 @@
 
 <h1>Agencies</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -12,17 +12,16 @@
   <tbody>
     <% @agencies.each do |agency| %>
       <tr>
-        <td><%= agency.name %><td>
-        <td><%= agency.code %><td>
-        <td><%= link_to 'Show', agency %></td>
-        <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
-        <td><%= link_to 'Destroy', agency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="font-weight-bold"><%= agency.name %><td>
+        <td class="font-weight-bold"><%= agency.code %><td>
+        <td><%= link_to 'Show', agency, class: 'btn btn-dark btn-sm custom-button' %></td>
+        <td><%= link_to 'Edit', edit_agency_path(agency), class: "btn btn-dark btn-sm text-monospace custom-button" %></td>
+        <td><%= link_to 'Destroy', agency, method: :delete, class: "btn btn-danger btn-sm text-monospace custom-button", data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
 <%= link_to 'New Agency', new_agency_path %>
 <%= paginate @agencies %>
