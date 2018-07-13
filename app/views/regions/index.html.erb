@@ -1,22 +1,22 @@
-<h1 class="d-inline-block">Regions</h1>
-<%= link_to 'Add Region', new_region_path, class: "btn btn-dark float-right mt-1" %>
-<table class="table table-striped">
+<h1 class='d-inline-block'>Regions</h1>
+<%= link_to 'Add Region', new_region_path, class: 'btn btn-dark float-right mt-1 add-button' %>
+<table class='table table-striped'>
   <thead>
     <tr>
       <th>Region Name</th>
       <th>Region Code</th>
-      <th colspan="4" class="text-center">Actions</th>
+      <th colspan='4' class='text-center'>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @regions.each do |region| %>
       <tr>
-        <td class="font-weight-bold"><%= region.name %></td>
-        <td class="font-weight-bold"><%= region.code %></td>
-        <td class="text-right"><%= link_to 'Show', region_path(region), class: 'btn btn-dark btn-sm custom-button' %></td>
-        <td class="text-right"><%= link_to 'Edit', edit_region_path(region), class: "btn btn-dark btn-sm custom-button" %></td>
-        <td class="text-right"><%= link_to 'Delete', region, method: :delete, class: "btn btn-danger btn-sm custom-button", data: { confirm: 'Are you sure?' } %></td>
+        <td class='font-weight-bold'%><%= region.name %></td>
+        <td class='font-weight-bold'><%= region.code %></td>
+        <td class='text-right'><%= link_to 'Show', region_path(region), class: 'btn btn-dark btn-sm custom-button' %></td>
+        <td class='text-right'><%= link_to 'Edit', edit_region_path(region), class: 'btn btn-dark btn-sm custom-button' %></td>
+        <td class='text-right'><%= link_to 'Delete', region, method: :delete, class: 'btn btn-danger btn-sm custom-button', data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
