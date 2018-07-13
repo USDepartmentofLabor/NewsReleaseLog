@@ -1,21 +1,21 @@
-<h1 class="d-inline-block">Distributionlists</h1>
-<%= link_to 'Add Distributionlist', new_distributionlist_path, class: 'btn btn-dark float-right mt-1' %>
+<h1 class='d-inline-block'>Distributionlists</h1>
+<%= link_to 'Add Distributionlist', new_distributionlist_path, class: 'btn btn-dark float-right mt-1 add-button' %>
 
-<table class="table table-striped table-responsive">
+<table class='table table-striped table-responsive'>
   <thead>
     <tr>
       <th>Name</th>
       <th>Abbreviation</th>
       <th>Status</th>
       <th>Description</th>
-      <th colspan="3" class="text-center">Actions</th>
+      <th colspan='3' class='text-center'>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @distributionlists.each do |distributionlist| %>
       <tr>
-        <td><%= distributionlist.name %>
+        <td class='font-weight-bold'><%= distributionlist.name %>
         <td><%= distributionlist.abbr %>
         <td><%= distributionlist.status %>
         <td><%= distributionlist.description %>
