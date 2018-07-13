@@ -33,7 +33,7 @@ class NewsLog
 
 
   # Validations
-  validates_presence_of :title, :region
+  validates_presence_of :title, :region, :received_date
   validates_uniqueness_of :news_release_number
   # validates_length_of :news_release_number, minimum: 11
 
