@@ -1,31 +1,40 @@
 <h1 class='d-inline-block'>Distributionlists</h1>
-<%= link_to 'Add Distributionlist', new_distributionlist_path, class: 'btn btn-dark float-right mt-1 add-button' %>
+<%= link_to 'Add New Distributionlist', new_distributionlist_path, class: 'btn btn-dark float-right mt-1 add-button' %>
 
-<table class='table table-striped table-responsive'>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Abbreviation</th>
-      <th>Status</th>
-      <th>Description</th>
-      <th colspan='3' class='text-center'>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @distributionlists.each do |distributionlist| %>
+<div class='table-responsive'>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td class='font-weight-bold'><%= distributionlist.name %>
-        <td><%= distributionlist.abbr %>
-        <td><%= distributionlist.status %>
-        <td><%= distributionlist.description %>
-        <td><%= link_to 'Show', distributionlist, class: 'btn btn-dark btn-sm custom-button' %></td>
-        <td><%= link_to 'Edit', edit_distributionlist_path(distributionlist), class: 'btn btn-dark btn-sm custom-button' %></td>
-        <td><%= link_to 'Delete', distributionlist, method: :delete, class: 'btn btn-danger btn-sm custom-button', data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Abbreviation</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th colspan='3' class='text-center'>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @distributionlists.each do |distributionlist| %>
+        <tr>
+          <td class='font-weight-bold'><%= link_to "#{distributionlist.name}", distributionlist %></td>
+          <td><%= distributionlist.abbr %></td>
+          <td><%= distributionlist.status %></td>
+          <td><%= distributionlist.description %></td>
+          <td class='text-center'>
+            <%= link_to edit_distributionlist_path(distributionlist) do %>
+              <i class='fa fa-edit fa-2x' title='Edit Distribution List'></i>
+            <% end %>
+          </td>
+          <td class='text-center'>
+            <%= link_to distributionlist, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class='fa fa-trash fa-2x' title='Delete Distribution List'></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 

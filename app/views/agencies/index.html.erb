@@ -1,26 +1,37 @@
-<h1 class="d-inline-block">Agencies</h1>
-<%= link_to 'Add Agency', new_agency_path, class: "btn btn-dark float-right  mt-1 add-button" %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Agency Name</th>
-      <th>Agency Code</th>
-      <th colspan="4" class="text-center">Actions</th>
-    </tr>
-  </thead>
+<h1 class='d-inline-block'>Agencies</h1>
+<%= link_to 'Add New Agency', new_agency_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
 
-  <tbody>
-    <% @agencies.each do |agency| %>
+<div class='table-responsive'>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td class="font-weight-bold"><%= agency.name %></td>
-        <td class="font-weight-bold"><%= agency.code %></td>
-        <td class="text-right"><%= link_to 'Show', agency, class: 'btn btn-dark btn-sm custom-button' %></td>
-        <td class="text-right"><%= link_to 'Edit', edit_agency_path(agency), class: 'btn btn-dark btn-sm custom-button' %></td>
-        <td class="text-right"><%= link_to 'Delete', agency, method: :delete, class: 'btn btn-danger btn-sm custom-button', data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <th>Agency Name</th>
+        <th>Agency Code</th>
+        <th colspan='2' class='text-center'>Actions</th>
+      </tr
+    </thead>
+
+    <tbody>
+      <% @agencies.each do |agency| %>
+        <tr>
+          <td class='font-weight-bold'><%= link_to "#{agency.name}", agency %></td>
+          <td class='font-weight-bold'><%= agency.code %></td>
+          <td class='text-center'>
+            <%= link_to edit_agency_path(agency) do %>
+              <i class='fa fa-edit fa-2x' title='Edit Agency'></i> 
+            <% end %> 
+          </td>
+
+          <td class='text-center'>
+            <%= link_to agency, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class='fa fa-trash fa-2x' title='Delete Agency'></i> 
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
