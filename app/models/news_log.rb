@@ -12,6 +12,10 @@ class NewsLog
   field :aasm_state
   field :opa_id,  type: Integer
 
+  index({ news_release_number: 'text' })
+  index({ title: 'text' })
+
+
   # Associations
   belongs_to :user
   belongs_to :agency, optional: true
@@ -35,7 +39,6 @@ class NewsLog
   # Validations
   validates_presence_of :title, :region, :received_date
   validates_uniqueness_of :news_release_number
-  # validates_length_of :news_release_number, minimum: 11
 
   before_validation :assign_nrl_number
 
@@ -57,6 +60,10 @@ class NewsLog
     event :archive do
       transitions :from => [:draft, :published], :to => :archived
     end
+  end
+
+  def self.search(q)
+    NewsLog.where({ news_release_number: { :$regex => q } }) + NewsLog.where({ title: { :$regex => q }})
   end
 
   private
