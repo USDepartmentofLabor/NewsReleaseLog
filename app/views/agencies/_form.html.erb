@@ -1,7 +1,7 @@
 <%= form_with(model: agency, local: true) do |form| %>
   <% if agency.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(agency.errors.count, "error") %> prohibited this agency from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(agency.errors.count, 'error') %> prohibited this agency from being saved:</h2>
 
       <ul>
       <% agency.errors.full_messages.each do |message| %>
@@ -11,17 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class='form-group'>
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class='form-group'>
     <%= form.label :code %>
-    <%= form.text_field :code %>
-  <div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <%= form.text_field :code, class: 'form-control' %>
   </div>
+  
+  <%= form.submit class: 'btn btn-dark btn-sm custom-button' %>
+  <%= link_to 'Cancel', agencies_path, class: 'btn btn-dark btn-sm custom-button' %>
 <% end %>
