@@ -29,6 +29,11 @@
 </p>
 
 <p>
+  <strong>Document:</strong>
+  <%=link_to "#{grid_fs_filename @news_log}", get_document_news_log_path(@news_log) %>
+</p>
+
+<p>
   <strong>Region:</strong>
   <%= @news_log.region.try(:name) %>
 </p>
