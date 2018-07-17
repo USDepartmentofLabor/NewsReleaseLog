@@ -1,12 +1,36 @@
-<%= semantic_form_for @distributionlist do |f| %>
-  <%= f.inputs do %>
-    <%= f.input :name %>
-    <%= f.input :abbr %>
-    <%= f.input :status %>
-    <%= f.input :description %>
+<%= form_with(model: distributionlist, local: true) do |form| %>
+  <% if distributionlist.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(distributionlist.errors.count, 'error') %> prohibited this distribution from being saved:</h2>
+
+      <ul>
+      <% distributionlist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
-  <% end %>
+  <div class='form-group'>
+    <%= form.label 'Name' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= form.label 'Abbreviation' %>
+    <%= form.text_field :abbr, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= form.label 'Status' %>
+    <%= form.text_field :status, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= form.label 'Description' %>
+    <%= form.text_field :description, class: 'form-control' %>
+  </div>
+
+  <%= form.submit class: 'btn btn-dark btn-sm' %>
+  <%= link_to 'Cancel', distributionlists_path, class: 'btn btn-dark btn-sm custom-button' %>
 <% end %>
