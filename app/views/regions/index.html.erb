@@ -1,26 +1,36 @@
-<h1 class="d-inline-block">Regions</h1>
-<%= link_to 'New Region', new_region_path, class: "btn btn-primary float-right text-monospace mt-1" %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Region Name</th>
-      <th>Region Code</th>
-      <th colspan="4" class="text-center">Actions</th>
-    </tr>
-  </thead>
+<h1 class='d-inline-block'>Regions</h1>
+<%= link_to 'Add New Region', new_region_path, class: 'btn btn-dark float-right mt-1 add-button' %>
 
-  <tbody>
-    <% @regions.each do |region| %>
+<div class='table-responsive'>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td class="font-weight-bold"><%= region.name %></td>
-        <td class="font-weight-bold"><%= region.code %></td>
-        <td class="text-right"><%= link_to 'Show', region_path(region), class: 'btn btn-dark btn-sm custom-button' %></td>
-        <td class="text-right"><%= link_to 'Edit', edit_region_path(region), class: "btn btn-dark btn-sm text-monospace custom-button" %></td>
-        <td class="text-right"><%= link_to 'Delete', region, method: :delete, class: "btn btn-danger btn-sm text-monospace custom-button", data: { confirm: 'Are you sure?' } %></td>
+        <th>Region Name</th>
+        <th>Region Code</th>
+        <th colspan='4' class='text-center'>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @regions.each do |region| %>
+        <tr>
+          <td class='font-weight-bold'%><%= link_to "#{region.name}", region %></td>
+          <td class='font-weight-bold'><%= region.code %></td>
+          <td class='text-center'>
+            <%= link_to edit_region_path(region) do %>
+              <i class='fa fa-edit fa-2x' title='Edit Region'></i> 
+            <% end %>
+          </td>
+          <td class='text-center'>
+            <%= link_to region, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class='fa fa-trash fa-2x' title='Delete Region'></i> 
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>  
 
 <br>
 <%= paginate @regions %>
