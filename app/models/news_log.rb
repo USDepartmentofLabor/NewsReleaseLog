@@ -63,7 +63,7 @@ class NewsLog
   end
 
   def self.search(q)
-    NewsLog.where({ news_release_number: { :$regex => q } }) + NewsLog.where({ title: { :$regex => q }})
+    NewsLog.where('$or' => [ { news_release_number: { :$regex => /#{q}/i } }, { title: { :$regex => /#{q}/i } } ])
   end
 
   private
