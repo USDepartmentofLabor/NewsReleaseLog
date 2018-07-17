@@ -9,7 +9,11 @@ Rails.application.routes.draw do
       get :active_drafts
       get :search
     end
+    member do
+      get :get_document
+    end
   end
+  # match '/uploads/grid/news_log/document/:id/:filename' => 'news_logs#get_document', :via => [:get]
   devise_for :users
   root to: "news_logs#index"
   scope module: 'admin' do

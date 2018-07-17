@@ -1,8 +1,9 @@
-<%= semantic_form_for news_log do |f| %>
+<%= semantic_form_for(news_log,:html => { :multipart => true }) do |f| %>
     <%= f.inputs do %>
       <%= f.input :title %>
       <%= f.input :region, :as => :select, :collection => @region_hash %>
       <%= f.input :agency, :as => :select, :collection => @agency_hash %>
+      <%= f.input :document,:as => :file%> 
       <%= f.input :received_date, input_html: {  type: 'text', class: 'datepicker'}%>
       <%= f.input :release_date, input_html: { type: 'text', class: 'datepicker' }%>
       <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>

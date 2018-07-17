@@ -1,6 +1,6 @@
 class NewsLogsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_news_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_news_log, only: [:show, :edit, :update, :destroy,:get_document]
   before_action :set_form_data, only: [:new, :edit]
   # GET /news_logs
   # GET /news_logs.json
@@ -32,6 +32,14 @@ class NewsLogsController < ApplicationController
 
   # GET /news_logs/1/edit
   def edit
+  end
+
+  def get_document
+    content = @news_log.document.read
+    if stale?(etag: content, last_modified: @news_log.updated_at.utc, public: true)
+      send_data content, type: @news_log.document.file.content_type, disposition: "inline"
+      expires_in 0, public: true
+    end
   end
 
   # POST /news_logs
@@ -90,7 +98,7 @@ class NewsLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_log_params
-      new_params= params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :distributionlist_ids =>[])
+      new_params= params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :document, :distributionlist_ids =>[])
       new_params[:received_date] = DateTime.parse(new_params[:received_date],"%mm/%dd/%yyyy") unless new_params[:received_date].blank?
       new_params
     end
