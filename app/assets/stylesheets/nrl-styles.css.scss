@@ -111,3 +111,14 @@
   width: 10em;
   border-radius: 0;
 }
+
+/////////////////////////////////
+.new-news-log {
+  label {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  input {
+    width: 50% !important;
+  }
+}
