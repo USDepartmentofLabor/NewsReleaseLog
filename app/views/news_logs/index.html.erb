@@ -1,5 +1,5 @@
-<h1 class='d-inline-block'>News Logs</h1>
-<%= link_to 'Add New NewsLog', new_news_log_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
+<h1 class='d-inline-block'>News Releases</h1>
+<%= link_to 'Create News Release', new_news_log_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
 
 <div class='table-responsive'>
   <table class='table table-striped'>
@@ -35,7 +35,7 @@
           </td>
           <td class='text-center'>
             <%= link_to news_log, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class='fa fa-trash fa-2x' title='Delete NewsLog'></i>
+              <i class='fa fa-trash fa-2x' title='Delete'></i>
             <% end %>
           </td>
         </tr>
