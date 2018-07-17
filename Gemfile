@@ -60,6 +60,10 @@ gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 # Auditing mongodb documents
 gem 'mongoid-history'
 
+# File upload
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
