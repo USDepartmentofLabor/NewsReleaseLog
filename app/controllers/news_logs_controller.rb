@@ -37,7 +37,8 @@ class NewsLogsController < ApplicationController
   def get_document
     content = @news_log.document.read
     if stale?(etag: content, last_modified: @news_log.updated_at.utc, public: true)
-      send_data content, type: @news_log.document.file.content_type, disposition: "inline"
+      file_name = @news_log.document.try(:file).path.split("/").last rescue "NewsRelease_#{news_log.id.to_s}"
+      send_data content, type: @news_log.document.file.content_type, disposition: "inline" , :filename => file_name
       expires_in 0, public: true
     end
   end
