@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/news_logs/search', to: 'search#search'
   resources :distributionlists
   resources :regions
   resources :agencies
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
       get :publised
       get :drafts
       get :active_drafts
-      get :search
     end
     member do
       get :get_document
