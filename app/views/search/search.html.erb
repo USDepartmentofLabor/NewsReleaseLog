@@ -1,5 +1,5 @@
 <h1> Search Results </h1>
-<% if @results.count == 0 %>
+<% if @sorted_results.count == 0 %>
   <p> Sorry, no results found </p>
 <% end %>
 <div class='table-responsive'>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @results.each do |result| %>
+      <% @sorted_results.each do |result| %>
         <tr>
           <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
           <td><%= link_to "#{result.title}", news_log_path(result) %><td>
@@ -20,3 +20,4 @@
     </tbody>
   </table>
 </div>
+<%= paginate @sorted_results %>
