@@ -5,12 +5,14 @@ class NewsLog
   include Mongoid::History::Trackable
 
   # Fields
-  field :received_date, type: Time
-  field :release_date, type: Time
+  field :received_date, type: Date
+  field :release_date, type: Date
   field :title, type: String
   field :news_release_number, type: String
   field :aasm_state
   field :opa_id,  type: Integer
+  # embeds_many :documents, cascade_callbacks: true
+  mount_uploader :document, DokumentUploader
 
   # Associations
   belongs_to :user
@@ -33,7 +35,7 @@ class NewsLog
 
 
   # Validations
-  validates_presence_of :title, :received_date
+  validates_presence_of :title, :region, :received_date
   validates_uniqueness_of :news_release_number
   # validates_length_of :news_release_number, minimum: 11
 
@@ -66,7 +68,4 @@ class NewsLog
     max_opa_id.present? ? self.opa_id = max_opa_id + 1 : self.opa_id = 1
     self.news_release_number = "#{Date.current.strftime("%y")}-#{self.opa_id.to_s.rjust(5, '0')}-#{region.code}"
   end
-
-
-
 end

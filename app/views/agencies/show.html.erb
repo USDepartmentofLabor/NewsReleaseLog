@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Agency</h1>
 <p>
   <strong>Agency Name:</strong>
@@ -11,5 +9,5 @@
   <%= @agency.code %>
 </p>
 
-<%= link_to 'Edit', edit_agency_path(@agency) %> |
-<%= link_to 'Back', agencies_path %>
+<%= link_to 'Back', agencies_path, class: 'btn btn-dark btn-sm custom-button' %>
+<%= link_to 'Edit', edit_agency_path(@agency), class: 'btn btn-dark btn-sm custom-button' %>
