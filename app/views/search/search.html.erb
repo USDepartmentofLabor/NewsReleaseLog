@@ -1,0 +1,22 @@
+<h1> Search Results </h1>
+<% if @results.count == 0 %>
+  <p> Sorry, no results found </p>
+<% end %>
+<div class='table-responsive'>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th class='font-weight-bold'> News Release Number </th>
+        <th class='font-weight-bold'> NewsReleaseLog Title </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |result| %>
+        <tr>
+          <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
+          <td><%= link_to "#{result.title}", news_log_path(result) %><td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

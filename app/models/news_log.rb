@@ -14,6 +14,10 @@ class NewsLog
   # embeds_many :documents, cascade_callbacks: true
   mount_uploader :document, DokumentUploader
 
+  index({ news_release_number: 'text' })
+  index({ title: 'text' })
+
+
   # Associations
   belongs_to :user
   belongs_to :agency, optional: true
@@ -37,7 +41,6 @@ class NewsLog
   # Validations
   validates_presence_of :title, :region, :received_date
   validates_uniqueness_of :news_release_number
-  # validates_length_of :news_release_number, minimum: 11
 
   before_validation :assign_nrl_number
 
@@ -59,6 +62,10 @@ class NewsLog
     event :archive do
       transitions :from => [:draft, :published], :to => :archived
     end
+  end
+
+  def self.search(q)
+    NewsLog.where('$or' => [ { news_release_number: { :$regex => /#{q}/i } }, { title: { :$regex => /#{q}/i } } ])
   end
 
   private
