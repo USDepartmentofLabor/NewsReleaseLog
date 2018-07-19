@@ -11,7 +11,6 @@ class NewsLog
   field :news_release_number, type: String
   field :aasm_state
   field :opa_id,  type: Integer
-  # embeds_many :documents, cascade_callbacks: true
   mount_uploader :document, DokumentUploader
 
   index({ news_release_number: 'text' })
