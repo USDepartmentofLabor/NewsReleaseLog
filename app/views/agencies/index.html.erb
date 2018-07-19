@@ -5,10 +5,10 @@
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th>Agency Name</th>
-        <th>Agency Code</th>
+        <th class='w-50'>Agency Name</th>
+        <th class='w-50'>Agency Code</th>
         <th colspan='2' class='text-center'>Actions</th>
-      </tr
+      </tr>
     </thead>
 
     <tbody>
@@ -18,13 +18,13 @@
           <td class='font-weight-bold'><%= agency.code %></td>
           <td class='text-center ml-2'>
             <%= link_to edit_agency_path(agency) do %>
-              <i class='fa fa-edit fa-2x' title='Edit Agency'></i> 
-            <% end %> 
+              <i class='fa fa-edit fa-2x' title='Edit Agency' alt='Edit Agency'></i>
+            <% end %>
           </td>
 
           <td class='text-center mr-2'>
             <%= link_to agency, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class='fa fa-trash fa-2x' title='Delete Agency'></i>
+              <i class='fa fa-trash fa-2x' title='Delete Agency' alt='Delete Agency'></i>
             <% end %>
           </td>
         </tr>
