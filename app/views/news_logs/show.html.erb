@@ -1,49 +1,54 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>News Release Number:</strong>
-  <%= @news_log.news_release_number %>
-</p>
-<p>
-  <strong>Received date:</strong>
-  <%= date_format @news_log.received_date %>
-</p>
+<div class='container justify-content-center'>
+  <div>
+    <p>
+    <strong>News Release Status: <%= @news_log.aasm_state %></strong>
+    </p>
+  <div>
+    <strong>News Release Number:</strong>
+    <%= @news_log.news_release_number %>
+  </p>
+  <p>
+    <strong>Received date:</strong>
+    <%= date_format @news_log.received_date %>
+  </p>
 
-<p>
-  <strong>Release date:</strong>
-  <%= date_format @news_log.release_date %>
-</p>
+  <p>
+    <strong>Release date:</strong>
+    <%= date_format @news_log.release_date %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @news_log.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @news_log.title %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @news_log.user.full_name %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @news_log.user.full_name %>
+  </p>
 
-<p>
-  <strong>Agency:</strong>
-  <%= @news_log.agency.try(:name) %>
-</p>
+  <p>
+    <strong>Agency:</strong>
+    <%= @news_log.agency.try(:name) %>
+  </p>
 
-<p>
-  <strong>Document:</strong>
-  <%=link_to "#{grid_fs_filename @news_log}", get_document_news_log_path(@news_log) %>
-</p>
+  <p>
+    <strong>Document:</strong>
+    <%=link_to "#{grid_fs_filename @news_log}", get_document_news_log_path(@news_log) %>
+  </p>
 
-<p>
-  <strong>Region:</strong>
-  <%= @news_log.region.try(:name) %>
-</p>
+  <p>
+    <strong>Region:</strong>
+    <%= @news_log.region.try(:name) %>
+  </p>
 
-<p>
-  <strong>Distributionlist:</strong>
-  <% @news_log.distributionlists.each do |d| %>
-    <%=d.name%></br>
-  <%end%>
-</p>
+  <p>
+    <strong>Distributionlist:</strong>
+    <% @news_log.distributionlists.each do |d| %>
+      <%=d.name%></br>
+    <%end%>
+  </p>
 
-<%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-primary" %>
-<%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>
+  <%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-primary" %>
+  <%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>
+</div>
