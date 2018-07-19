@@ -6,15 +6,15 @@
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th class='font-weight-bold'> News Release Number </th>
-        <th class='font-weight-bold'> NewsReleaseLog Title </th>
+        <th class='font-weight-bold w-50'> News Release Number </th>
+        <th class='font-weight-bold w-50'> NewsReleaseLog Title </th>
       </tr>
     </thead>
     <tbody>
       <% @sorted_results.each do |result| %>
         <tr>
           <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
-          <td><%= link_to "#{result.title}", news_log_path(result) %><td>
+          <td><%= link_to "#{result.title}", news_log_path(result) %></td>
         </tr>
       <% end %>
     </tbody>
