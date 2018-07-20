@@ -5,8 +5,8 @@
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th>Region Name</th>
-        <th>Region Code</th>
+        <th class="w-50">Region Name</th>
+        <th class="w-50">Region Code</th>
         <th colspan='4' class='text-center'>Actions</th>
       </tr>
     </thead>
@@ -18,19 +18,19 @@
           <td class='font-weight-bold'><%= region.code %></td>
           <td class='text-center'>
             <%= link_to edit_region_path(region) do %>
-              <i class='fa fa-edit fa-2x' title='Edit Region'></i> 
+              <i class='fa fa-edit fa-2x' title='Edit Region'></i>
             <% end %>
           </td>
           <td class='text-center'>
             <%= link_to region, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class='fa fa-trash fa-2x' title='Delete Region'></i> 
+              <i class='fa fa-trash fa-2x' title='Delete Region'></i>
             <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>  
+</div>
 
 <br>
 <%= paginate @regions %>
