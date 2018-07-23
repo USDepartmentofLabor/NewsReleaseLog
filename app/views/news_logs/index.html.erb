@@ -23,7 +23,7 @@
           <td><%= news_log.title.truncate(24) %></td>
           <td><%= news_log.user.initials %></td>
           <td><%= link_to "#{news_log.news_release_number}", news_log %></td>
-          <td><span class="p-2 mb-1 <%=status_color(news_log)%> rounded  text-white"> <%= news_log.aasm_state %><span></td>
+          <td><span class="p-2 mb-1 <%=status_color(news_log)%> rounded  text-white news-log-status-wrap"> <%= news_log.aasm_state.capitalize %><span></td>
           <td><%= date_format news_log.received_date %></td>
           <td><%= date_format news_log.release_date%></td>
           <td><%= news_log.agency.try(:name) %></td>
