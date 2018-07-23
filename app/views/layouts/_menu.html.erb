@@ -25,7 +25,7 @@
     </ul>
 
     <%= form_tag news_logs_search_url, method: :get, class: 'form-inline mt-2 mt-md-0' do %>
-      <%= text_field_tag :search, params[:search], placeholder: 'Enter Release number or title', class: 'form-control-sm mr-2' %>
+       <%= text_field_tag :search, params[:search], placeholder: 'Enter Release number or title', size: 30, class: 'form-control-sm mr-2' %>
       <%= button_tag type: 'submit' do %>
         <i class="fa fa-search" aria-hidden='true'  aria-label='Search news release'}></i>
       <% end %>
