@@ -11,6 +11,7 @@
       <% else %>
         <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' ,:disabled => true } %>
       <%end%>
+      <%= f.input :document,:as => :file%> 
       <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker' }%>
       <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>
     <% end %>
