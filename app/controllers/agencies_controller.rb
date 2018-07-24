@@ -5,20 +5,24 @@ class AgenciesController < ApplicationController
   # GET /agencies.json
   def index
     @agencies = Agency.order(:created_at => "DESC").page params[:page]
+    authorize @agencies
   end
 
   # GET /agencies/1
   # GET /agencies/1.json
   def show
+    authorize @agency
   end
 
   # GET /agencies/new
   def new
     @agency = Agency.new
+    authorize @agency
   end
 
   # GET /agencies/1/edit
   def edit
+    authorize @agency
   end
 
   # POST /agencies
@@ -26,6 +30,7 @@ class AgenciesController < ApplicationController
   def create
     @agency = Agency.new(agency_params)
 
+    authorize @agency
     respond_to do |format|
       if @agency.save
         format.html { redirect_to @agency, notice: 'Agency was successfully created.' }
@@ -40,6 +45,7 @@ class AgenciesController < ApplicationController
   # PATCH/PUT /agencies/1
   # PATCH/PUT /agencies/1.json
   def update
+    authorize @agency
     respond_to do |format|
       if @agency.update(agency_params)
         format.html { redirect_to @agency, notice: 'Agency was successfully updated.' }
@@ -54,6 +60,7 @@ class AgenciesController < ApplicationController
   # DELETE /agencies/1
   # DELETE /agencies/1.json
   def destroy
+    authorize @agency
     @agency.destroy
     respond_to do |format|
       format.html { redirect_to agencies_url, notice: 'Agency was successfully destroyed.' }

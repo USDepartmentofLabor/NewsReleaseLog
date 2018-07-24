@@ -1,5 +1,7 @@
 <h1 class='d-inline-block'>Regions</h1>
-<%= link_to 'Add New Region', new_region_path, class: 'btn btn-dark float-right mt-1 add-button' %>
+<% if current_user.role.admin? %>
+  <%= link_to 'Add New Region', new_region_path, class: 'btn btn-dark float-right mt-1 add-button' %>
+<% end %>
 
 <div class='table-responsive'>
   <table class='table table-striped'>
@@ -7,7 +9,7 @@
       <tr>
         <th class="w-50">Region Name</th>
         <th class="w-50">Region Code</th>
-        <th colspan='4' class='text-center'>Actions</th>
+        <th colspan='2' class='text-center'>Actions</th>
       </tr>
     </thead>
 
@@ -16,14 +18,22 @@
         <tr>
           <td class='font-weight-bold'%><%= link_to "#{region.name}", region %></td>
           <td class='font-weight-bold'><%= region.code %></td>
-          <td class='text-center'>
-            <%= link_to edit_region_path(region) do %>
-              <i class='fa fa-edit fa-2x' title='Edit Region'></i>
+          <td class='text-center ml-2'>
+            <% if policy(region).update? %>
+              <%= link_to edit_region_path(region) do %>
+                <i class='fa fa-edit fa-2x' title='Edit Region' alt='Edit Region'></i>
+              <% end %>
+            <% else %>
+              <i class='fa fa-edit fa-2x fa-edit-disabled' title='Action not permitted' alt='Action not permitted'></i> 
             <% end %>
           </td>
-          <td class='text-center'>
-            <%= link_to region, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class='fa fa-trash fa-2x' title='Delete Region'></i>
+          <td class='text-center mr-2'>
+            <% if policy(region).destroy? %>
+              <%= link_to region, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class='fa fa-trash fa-2x' title='Delete Region' alt='Delete Region'></i>
+              <% end %>
+            <% else %>
+              <i class='fa fa-trash fa-2x fa-trash-disabled' title='Action not permitted' alt='Action Not Permitted'></i>
             <% end %>
           </td>
         </tr>

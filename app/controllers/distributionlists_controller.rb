@@ -5,20 +5,24 @@ class DistributionlistsController < ApplicationController
   # GET /distributionlists.json
   def index
     @distributionlists = Distributionlist.order(:created_at => "DESC").page params[:page]
+    authorize @distributionlists
   end
 
   # GET /distributionlists/1
   # GET /distributionlists/1.json
   def show
+    authorize @distributionlist
   end
 
   # GET /distributionlists/new
   def new
     @distributionlist = Distributionlist.new
+    authorize @distributionlist
   end
 
   # GET /distributionlists/1/edit
   def edit
+    authorize @distributionlist
   end
 
   # POST /distributionlists
@@ -26,6 +30,7 @@ class DistributionlistsController < ApplicationController
   def create
     @distributionlist = Distributionlist.new(distributionlist_params)
 
+    authorize @distributionlist
     respond_to do |format|
       if @distributionlist.save
         format.html { redirect_to @distributionlist, notice: 'Distributionlist was successfully created.' }
@@ -40,6 +45,7 @@ class DistributionlistsController < ApplicationController
   # PATCH/PUT /distributionlists/1
   # PATCH/PUT /distributionlists/1.json
   def update
+    authorize @distributionlist
     respond_to do |format|
       if @distributionlist.update(distributionlist_params)
         format.html { redirect_to @distributionlist, notice: 'Distributionlist was successfully updated.' }
@@ -54,6 +60,7 @@ class DistributionlistsController < ApplicationController
   # DELETE /distributionlists/1
   # DELETE /distributionlists/1.json
   def destroy
+    authorize @distributionlist
     @distributionlist.destroy
     respond_to do |format|
       format.html { redirect_to distributionlists_url, notice: 'Distributionlist was successfully destroyed.' }
