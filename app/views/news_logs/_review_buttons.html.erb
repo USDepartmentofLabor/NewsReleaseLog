@@ -1,2 +1,2 @@
 <%= f.action :submit,:label => "Update", :button_html => {:class => "btn btn-secondary p-2 rounded"} %>
-<%= f.action :submit,:label => "Publish", :button_html => {:class => "btn btn-primary p-2 rounded",:name =>"to[published]"} %>
+<%= f.action :submit,:label => "Publish", :button_html => {:class => "btn btn-primary p-2 rounded",:name =>"to[published]", data: { confirm: 'Are you sure you want to pusblish this?' }} %>

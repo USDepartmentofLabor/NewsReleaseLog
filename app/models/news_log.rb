@@ -15,7 +15,7 @@ class NewsLog
 
   index({ news_release_number: 'text' })
   index({ title: 'text' })
-
+  index({ news_release_number: 1 , title: 1 })
 
   # Associations
   belongs_to :user

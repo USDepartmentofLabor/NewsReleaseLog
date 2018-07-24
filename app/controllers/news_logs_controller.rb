@@ -106,7 +106,7 @@ class NewsLogsController < ApplicationController
 
     def news_logs_update_params
       update_params = params.require(:news_log).permit(:release_date, :title, :user_id, :agency_id, :region_id,:document,:received_date, :distributionlist_ids =>[])
-      new_state = params[:to].try(:keys).first
+      new_state = params[:to].try(:keys).first if params[:to].present?
       update_params[:aasm_state] = params[:to].try(:keys).first if new_state && NewsLog.aasm.states.map(&:name).include?(new_state.to_sym)
       update_params
     end
