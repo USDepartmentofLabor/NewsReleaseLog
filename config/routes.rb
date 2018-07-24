@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     member do
       get :get_document
+      get :history
     end
   end
   # match '/uploads/grid/news_log/document/:id/:filename' => 'news_logs#get_document', :via => [:get]
