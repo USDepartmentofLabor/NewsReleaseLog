@@ -60,6 +60,9 @@ gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 # Auditing mongodb documents
 gem 'mongoid-history'
 
+# Adding enumerize attributes
+gem 'enumerize', '~> 2.2', '>= 2.2.2'
+
 # File upload
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
