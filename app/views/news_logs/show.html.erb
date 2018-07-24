@@ -10,7 +10,7 @@
       <strong>Received date:</strong>
       <%= date_format @news_log.received_date %>
     </p>
-    
+
     <p>
      <strong>Release date:</strong>
       <%= date_format @news_log.release_date %>
@@ -47,7 +47,7 @@
         <%=d.name%></br>
       <%end%>
     </p>
-
+    <%= link_to 'History', history_news_log_path(@news_log), class: "btn btn-secondary"%>
     <%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-primary" %>
     <%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>
   </div>
