@@ -1,6 +1,6 @@
 class NewsLogsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_news_log, only: [:show, :edit, :update, :destroy,:get_document]
+  before_action :set_news_log, only: [:show, :edit, :update, :destroy,:get_document,:history]
   before_action :set_form_data, only: [:new, :edit]
   # GET /news_logs
   # GET /news_logs.json
@@ -41,6 +41,9 @@ class NewsLogsController < ApplicationController
       send_data content, type: @news_log.document.file.content_type, disposition: "inline" , :filename => file_name
       expires_in 0, public: true
     end
+  end
+
+  def history
   end
 
   # POST /news_logs
@@ -101,13 +104,14 @@ class NewsLogsController < ApplicationController
     def news_log_params
       new_params= params.require(:news_log).permit(:received_date, :release_date, :title, :user_id, :agency_id, :region_id, :document, :distributionlist_ids =>[])
       new_params[:received_date] = DateTime.strptime(new_params[:received_date],"%m/%d/%Y") unless new_params[:received_date].blank?
-      new_params
+      new_params.merge!({:modifier => current_user})
     end
 
     def news_logs_update_params
       update_params = params.require(:news_log).permit(:release_date, :title, :user_id, :agency_id, :region_id,:document,:received_date, :distributionlist_ids =>[])
+      # This logic need to be rewritten to actually use aasm_state functionality
       new_state = params[:to].try(:keys).first
       update_params[:aasm_state] = params[:to].try(:keys).first if new_state && NewsLog.aasm.states.map(&:name).include?(new_state.to_sym)
-      update_params
+      update_params.merge!({:modifier => current_user})
     end
 end
