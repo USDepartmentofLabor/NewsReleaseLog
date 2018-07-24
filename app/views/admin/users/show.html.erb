@@ -1,25 +1,24 @@
-<div class="table-responsive">
-    <table class="table table-striped table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Current Signin at</th>
-          <th scope="col">Admin?</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @user.first_name %></td>
-          <td><%= @user.last_name %></td>
-          <td><%= @user.email %></td>
-          <td><%= @user.current_sign_in_at %></td>
-          <td><%= @user.admin %></td>
-          <td><%= link_to 'Back', users_path, class: 'btn btn-dark'%></td>
-          <td><%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-dark' %></td>
-        </tr>
-      </tbody>
-    </table>
-</div>
+<h1><%= @user.first_name.capitalize + ' ' + @user.last_name.capitalize %></h1>
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name.capitalize %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name.capitalize %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email%>
+</p>
+<p>
+  <strong>Role:</strong>
+  <%= @user.role.capitalize %>
+</p>
+<p>
+  <strong>Current SignIn At:</strong>
+  <%= @user.current_sign_in_at %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-dark btn-sm custom-button' %>
+<%= link_to 'Cancel', users_path, class: 'btn btn-dark btn-sm custom-button' %>

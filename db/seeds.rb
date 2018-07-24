@@ -20,6 +20,7 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   r = Region.new
   r.name = row['RegionName']
+  r.code = r.name[0..2].upcase
   r.save
   puts "#{r.name} saved"
 end
@@ -41,4 +42,8 @@ end
 puts "There are now #{Distributionlist.count} rows in the table Distributionlist"
 
 # Create Admin User
-User.create(email: "nrladmin@dol.gov", password: "G*Yn7g<Ab-")
+User.create!(email: 'admin@dol.gov', password: 'password', first_name: 'Admin', last_name: 'Lastname', role: :admin)
+User.create!(email: 'moderator@dol.gov', password: 'password', first_name: 'Moderator', last_name: 'Lastname', role: :moderator)
+User.create!(email: 'user@dol.gov', password: 'password', first_name: 'NormalUser', last_name: 'Lastname', role: :user)
+
+puts "There are now #{User.count} documents in the User collection"
