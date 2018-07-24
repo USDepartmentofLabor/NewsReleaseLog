@@ -1,0 +1,25 @@
+<h1 class='d-inline-block'>News log History Tracker</h1>
+
+<div class='table-responsive'>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Email</th>
+         <th>Modified</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @histories.each do |log_history| %>
+        <tr>
+          <td><%= log_history.modifier.email %></td>
+          <td><%= log_history.modified %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>
+</div>
+<br>
+
+<%= paginate @histories %>
