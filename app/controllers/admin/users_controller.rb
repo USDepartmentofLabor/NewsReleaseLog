@@ -4,15 +4,23 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.order(:created_at => "DESC").page
+    authorize @users
+  end
+
+  def show
+    authorize @user
   end
 
   def new
     @user = User.new
+    authorize @user
   end
 
   # Audit comment working
   def create
     @user = User.new(user_params)
+    authorize @user
+
     if @user.save
       redirect_to @user , :notice => "User created successfully."
     else
@@ -21,9 +29,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
+   authorize @user
   end
 
   def update
+    authorize @user
     if @user.update(user_params)
       redirect_to @user , :notice => "User updated successfully."
     else
@@ -31,13 +41,13 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
+    authorize @user
     users_email = @user.email
     if @user.id != current_user.id && @user.destroy
       redirect_to users_path , :notice => "User deleted successfully."
+    else
+      redirect_to users_path, :alert => "Unable to delete the user please check with Adminstrator"
     end
   end
 
@@ -51,10 +61,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :role)
   end
 
   def skip_password
-    @user.skip_password_validation = true if current_user.admin?
+    @user.skip_password_validation = true if current_user.role.admin?
   end
 end
