@@ -31,15 +31,25 @@ module NewsLogsHelper
     end
   end
 
-  def show_news_log_moditication(track)
+  def show_news_log_modification(track)
     if track.original.present?
       changes=[]
       track.modified.each do |key,value| 
-        changes << content_tag(:p,"Changed: #{key.capitalize} from #{track.original[key.to_sym]} #{track.modified[key.to_sym]}")
+        changes << content_tag(:p,"Changed: #{key.capitalize} from #{track.original[key.to_sym]} to #{track.modified[key.to_sym]}")
       end
-       changes.join(content_tag(:br)).html_safe
+       changes.join.html_safe
     else
-      "Created: #{track.modified}"
+      # "Created: #{track.modified}"
+      changes=[]
+      changes << content_tag(:div,"Created News Release with")
+      track.modified.each do |key,value| 
+         row = content_tag(:div,class: ["bg-white p-1"]) do 
+          content_tag(:span,"#{key.capitalize}:  ") + 
+          content_tag(:span, "#{track.modified[key.to_sym].to_s.try(:capitalize)}", class: ["text-dark"] )
+         end
+         changes << row
+      end
+       changes.join.html_safe
     end
   end
 end
