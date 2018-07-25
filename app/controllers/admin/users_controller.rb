@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
   def show
     authorize @user
   end
-  
+
   def new
     @user = User.new
     authorize @user
@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-   authorize @user 
+   authorize @user
   end
 
   def update
@@ -46,6 +46,8 @@ class Admin::UsersController < ApplicationController
     users_email = @user.email
     if @user.id != current_user.id && @user.destroy
       redirect_to users_path , :notice => "User deleted successfully."
+    else
+      redirect_to users_path, :alert => "Unable to delete the user please check with Adminstrator"
     end
   end
 
