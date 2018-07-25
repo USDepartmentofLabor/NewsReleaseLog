@@ -6,32 +6,36 @@ class NewsLogsController < ApplicationController
   # GET /news_logs.json
   def index
     @news_logs = NewsLog.order(:created_at => "DESC").page params[:page]
+    authorize @news_logs
   end
 
-  def active_drafts
-    @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
-  end
-
-  def published
-    @news_logs = NewsLog.published
-  end
-
-  def drafts
-    @news_logs = NewsLog.drafts
-  end
+  # def active_drafts
+  #   @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
+  # end
+  #
+  # def published
+  #   @news_logs = NewsLog.published
+  # end
+  #
+  # def drafts
+  #   @news_logs = NewsLog.drafts
+  # end
 
   # GET /news_logs/1
   # GET /news_logs/1.json
   def show
+    authorize @news_log
   end
 
   # GET /news_logs/new
   def new
     @news_log = NewsLog.new
+    authorize @news_log
   end
 
   # GET /news_logs/1/edit
   def edit
+    authorize @news_log
   end
 
   def get_document
@@ -44,6 +48,7 @@ class NewsLogsController < ApplicationController
   end
 
   def history
+     @histories = @news_log.history_tracks.order(:updated_at => "DESC").page params[:page]
   end
 
   # POST /news_logs
@@ -51,8 +56,8 @@ class NewsLogsController < ApplicationController
   def create
     @news_log = NewsLog.new(news_log_params)
     @news_log.user = current_user
-    # authorize NewsLog
 
+    authorize @news_log
     respond_to do |format|
       if @news_log.save
         format.html { redirect_to @news_log, notice: 'News log was successfully created.' }
@@ -67,6 +72,7 @@ class NewsLogsController < ApplicationController
   # PATCH/PUT /news_logs/1
   # PATCH/PUT /news_logs/1.json
   def update
+    authorize @news_log
     respond_to do |format|
       if @news_log.update(news_logs_update_params)
         format.html { redirect_to @news_log, notice: 'News log was successfully updated.' }
@@ -81,6 +87,7 @@ class NewsLogsController < ApplicationController
   # DELETE /news_logs/1
   # DELETE /news_logs/1.json
   def destroy
+    authorize @news_log
     @news_log.destroy
     respond_to do |format|
       format.html { redirect_to news_logs_url, notice: 'News log was successfully destroyed.' }
@@ -109,8 +116,7 @@ class NewsLogsController < ApplicationController
 
     def news_logs_update_params
       update_params = params.require(:news_log).permit(:release_date, :title, :user_id, :agency_id, :region_id,:document,:received_date, :distributionlist_ids =>[])
-      # This logic need to be rewritten to actually use aasm_state functionality
-      new_state = params[:to].try(:keys).first
+      new_state = params[:to].try(:keys).first if params[:to].present?
       update_params[:aasm_state] = params[:to].try(:keys).first if new_state && NewsLog.aasm.states.map(&:name).include?(new_state.to_sym)
       update_params.merge!({:modifier => current_user})
     end

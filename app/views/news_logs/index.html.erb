@@ -1,13 +1,15 @@
 <h1 class='d-inline-block'>News Releases</h1>
-<%= link_to 'Create News Release', new_news_log_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
+<% if current_user.role.admin? || current_user.role.moderator? %>
+  <%= link_to 'Create News Release', new_news_log_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
+<% end %>
 
 <div class='table-responsive'>
   <table class='table table-striped'>
     <thead>
       <tr>
+        <th>Release#</th>
         <th>Title</th>
         <th>User</th>
-        <th>Release#</th>
         <th>Status</th>
         <th>Received date</th>
         <th>Release date</th>
@@ -20,22 +22,30 @@
     <tbody>
       <% @news_logs.each do |news_log| %>
         <tr>
+          <td><%= link_to "#{news_log.news_release_number}", news_log %></td>
           <td><%= news_log.title.truncate(24) %></td>
           <td><%= news_log.user.initials %></td>
-          <td><%= link_to "#{news_log.news_release_number}", news_log %></td>
-          <td><span class="p-2 mb-1 <%=status_color(news_log)%> rounded  text-white"> <%= news_log.aasm_state %><span></td>
+          <td><span class="p-2 mb-1 <%=status_color(news_log)%> rounded  text-white"> <%= news_log.aasm_state.capitalize %><span></td>
           <td><%= date_format news_log.received_date %></td>
           <td><%= date_format news_log.release_date%></td>
           <td><%= news_log.agency.try(:name) %></td>
           <td><%= news_log.region.try(:name) %></td>
           <td class='text-center'>
-            <%= link_to edit_news_log_path(news_log) do %>
-              <i class='fa fa-edit fa-2x' title='Edit NewsLog'></i>
+            <% if policy(news_log).update? %>
+              <%= link_to edit_news_log_path(news_log) do %>
+                <i class='fa fa-edit fa-2x' title='Edit NewsLog'></i>
+              <% end %>
+            <% else %>
+                <i class='fa fa-edit fa-2x fa-edit-disabled' title='Edit NewsLog'></i>
             <% end %>
           </td>
           <td class='text-center'>
-            <%= link_to news_log, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class='fa fa-trash fa-2x' title='Delete'></i>
+            <% if policy(news_log).destroy? %>
+              <%= link_to news_log, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class='fa fa-trash fa-2x' title='Delete'></i>
+              <% end %>
+            <% else %>
+                <i class='fa fa-trash fa-2x fa-trash-disabled' title='Delete'></i> 
             <% end %>
           </td>
         </tr>

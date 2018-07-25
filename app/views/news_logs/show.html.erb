@@ -1,8 +1,9 @@
 <div class='container justify-content-center'>
   <div>
     <div class='mt-2 mb-3 p-3 bg-info rounded'>
-       <strong> Current status of the news release is : <%= @news_log.aasm_state.capitalize %></strong>
+       <strong> Current status of this news release is : <%= @news_log.aasm_state.capitalize %></strong>
     </div>
+    <p>
       <strong>News Release Number:</strong>
       <%= @news_log.news_release_number %>
     </p>
