@@ -146,12 +146,16 @@ body {
   width: 10em;
 }
 
-.fa-edit {
+.fa-edit, .fa-arrow-left {
   color: black;
 }
 
 .fa-trash {
   color: red;
+}
+
+.fa-edit-disabled, .fa-trash-disabled{
+  opacity: 0.3;
 }
 
 //////////////login//////////////////

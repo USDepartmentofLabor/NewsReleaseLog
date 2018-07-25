@@ -3,7 +3,7 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :email %>
-    <%= f.input :admin, as: :boolean, label: 'Admin?' %>
+    <%= f.input :role, as: :radio %>
   <% end %>
   <%= f.actions do %>
     <%= f.action :submit, :as => :button , :input_html => {:class => "btn btn-primary"}%>
