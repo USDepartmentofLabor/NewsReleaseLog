@@ -39,7 +39,6 @@ module NewsLogsHelper
       end
        changes.join.html_safe
     else
-      # "Created: #{track.modified}"
       changes=[]
       changes << content_tag(:div,"Created News Release with")
       track.modified.each do |key,value| 
