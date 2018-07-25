@@ -42,8 +42,7 @@ end
 puts "There are now #{Distributionlist.count} rows in the table Distributionlist"
 
 # Create Admin User
-User.create!(email: 'admin@dol.gov', password: 'password', first_name: 'Admin', last_name: 'Lastname', role: :admin)
-User.create!(email: 'moderator@dol.gov', password: 'password', first_name: 'Moderator', last_name: 'Lastname', role: :moderator)
-User.create!(email: 'user@dol.gov', password: 'password', first_name: 'NormalUser', last_name: 'Lastname', role: :user)
+# Create Admin User
+User.create(email: "nrladmin@dol.gov", password: "G*Yn7g<Ab-",first_name: 'News', last_name: 'Release', role: :admin)
 
 puts "There are now #{User.count} documents in the User collection"

@@ -9,17 +9,17 @@ class NewsLogsController < ApplicationController
     authorize @news_logs
   end
 
-  def active_drafts
-    @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
-  end
-
-  def published
-    @news_logs = NewsLog.published
-  end
-
-  def drafts
-    @news_logs = NewsLog.drafts
-  end
+  # def active_drafts
+  #   @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
+  # end
+  #
+  # def published
+  #   @news_logs = NewsLog.published
+  # end
+  #
+  # def drafts
+  #   @news_logs = NewsLog.drafts
+  # end
 
   # GET /news_logs/1
   # GET /news_logs/1.json
