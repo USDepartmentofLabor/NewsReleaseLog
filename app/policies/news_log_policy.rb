@@ -1,16 +1,30 @@
 class NewsLogPolicy < ApplicationPolicy
-  attr_reader :user, :news_log
 
-  def initialize(user, news_log)
-    @user = user
-    @news_log = news_log
+  def index?
+    user.present?
   end
 
-  def update?
-    user.admin? or not news_log.published?
+  def show?
+    user.present?
+  end
+
+  def new?
+    user.role.admin? || user.role.moderator?
   end
 
   def create?
-    user.admin?
+    user.role.admin? || user.role.moderator?
+  end
+
+  def edit?
+    user.role.admin? || user.role.moderator?
+  end
+
+  def update?
+    user.role.admin? || user.role.moderator?
+  end
+
+  def destroy?
+    user.role.admin? 
   end
 end

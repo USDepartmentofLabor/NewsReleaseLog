@@ -1,6 +1,8 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  extend Enumerize
+
   
   # Include default devise modules. Others available are:
   # :confirmable,  :timeoutable and :omniauthable,:registerable,
@@ -37,7 +39,8 @@ class User
   field :failed_attempts, type: Integer, default: 3 # Only if lock strategy is :failed_attempts
   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   field :locked_at,       type: Time
-  field :admin,           type: Boolean, default: false
+  field :role
+  enumerize :role, in: [:user, :moderator, :admin], default: :user
 
   # Associations
   has_many :news_logs

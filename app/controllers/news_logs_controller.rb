@@ -6,32 +6,36 @@ class NewsLogsController < ApplicationController
   # GET /news_logs.json
   def index
     @news_logs = NewsLog.order(:created_at => "DESC").page params[:page]
+    authorize @news_logs
   end
 
-  def active_drafts
-    @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
-  end
-
-  def published
-    @news_logs = NewsLog.published
-  end
-
-  def drafts
-    @news_logs = NewsLog.drafts
-  end
+  # def active_drafts
+  #   @news_logs = NewsLog.active_drafts #TODO add update_at between last 2 weeks
+  # end
+  #
+  # def published
+  #   @news_logs = NewsLog.published
+  # end
+  #
+  # def drafts
+  #   @news_logs = NewsLog.drafts
+  # end
 
   # GET /news_logs/1
   # GET /news_logs/1.json
   def show
+    authorize @news_log
   end
 
   # GET /news_logs/new
   def new
     @news_log = NewsLog.new
+    authorize @news_log
   end
 
   # GET /news_logs/1/edit
   def edit
+    authorize @news_log
   end
 
   def get_document
@@ -48,8 +52,8 @@ class NewsLogsController < ApplicationController
   def create
     @news_log = NewsLog.new(news_log_params)
     @news_log.user = current_user
-    # authorize NewsLog
 
+    authorize @news_log
     respond_to do |format|
       if @news_log.save
         format.html { redirect_to @news_log, notice: 'News log was successfully created.' }
@@ -64,6 +68,7 @@ class NewsLogsController < ApplicationController
   # PATCH/PUT /news_logs/1
   # PATCH/PUT /news_logs/1.json
   def update
+    authorize @news_log
     respond_to do |format|
       if @news_log.update(news_logs_update_params)
         format.html { redirect_to @news_log, notice: 'News log was successfully updated.' }
@@ -78,6 +83,7 @@ class NewsLogsController < ApplicationController
   # DELETE /news_logs/1
   # DELETE /news_logs/1.json
   def destroy
+    authorize @news_log
     @news_log.destroy
     respond_to do |format|
       format.html { redirect_to news_logs_url, notice: 'News log was successfully destroyed.' }

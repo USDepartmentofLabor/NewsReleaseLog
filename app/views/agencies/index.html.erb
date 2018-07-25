@@ -1,5 +1,7 @@
 <h1 class='d-inline-block'>Agencies</h1>
-<%= link_to 'Add New Agency', new_agency_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
+<% if current_user.role.admin? %>
+  <%= link_to 'Add New Agency', new_agency_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
+<% end %>
 
 <div class='table-responsive'>
   <table class='table table-striped'>
@@ -17,14 +19,21 @@
           <td class='font-weight-bold'><%= link_to "#{agency.name}", agency %></td>
           <td class='font-weight-bold'><%= agency.code %></td>
           <td class='text-center ml-2'>
-            <%= link_to edit_agency_path(agency) do %>
-              <i class='fa fa-edit fa-2x' title='Edit Agency' alt='Edit Agency'></i>
+            <% if policy(agency).update? %>
+              <%= link_to edit_agency_path(agency) do %>
+                <i class='fa fa-edit fa-2x' title='Edit Agency' alt='Edit Agency'></i>
+              <% end %>
+            <% else %>
+              <i class='fa fa-edit fa-2x fa-edit-disabled' title='Action not permitted' alt='Action Not Permitted'></i>
             <% end %>
           </td>
-
           <td class='text-center mr-2'>
-            <%= link_to agency, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class='fa fa-trash fa-2x' title='Delete Agency' alt='Delete Agency'></i>
+            <% if policy(agency).destroy? %>
+              <%= link_to agency, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class='fa fa-trash fa-2x' title='Delete Agency' alt='Delete Agency'></i>
+              <% end %>
+            <% else %>
+              <i class='fa fa-trash fa-2x fa-trash-disabled' title='Action not permitted' alt='Action Not Permitted'></i>
             <% end %>
           </td>
         </tr>
@@ -34,5 +43,4 @@
 </div>
 
 <br>
-
 <%= paginate @agencies %>
