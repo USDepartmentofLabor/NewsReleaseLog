@@ -30,4 +30,16 @@ module NewsLogsHelper
       "bg-dark"
     end
   end
+
+  def show_news_log_moditication(track)
+    if track.original.present?
+      changes=[]
+      track.modified.each do |key,value| 
+        changes << content_tag(:p,"Changed: #{key.capitalize} from #{track.original[key.to_sym]} #{track.modified[key.to_sym]}")
+      end
+       changes.join(content_tag(:br)).html_safe
+    else
+      "Created: #{track.modified}"
+    end
+  end
 end
