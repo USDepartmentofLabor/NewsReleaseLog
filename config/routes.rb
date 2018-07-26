@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get '/news_logs/search', to: 'search#search'
+  get '/search', to: 'search#advanced_search_get'
+  post '/search', to: 'search#advanced_search_post'
   resources :distributionlists
   resources :regions
   resources :agencies
