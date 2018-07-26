@@ -1,0 +1,41 @@
+<h1>Advanced Search</h1>
+
+<p>To search DOL News Release Log, enter the appropriate release number or title, select the appropriate agency and region and then click the search button.</p>
+<%= form_tag search_url, method: :post, class: 'mt-2 mt-md-0' do %>
+  <div class='form-group'>
+    <label for='search' class='mr-2'>From:</label>
+    <%= date_field_tag :start_date, params[:search], placeholder: 'Enter start Date', class: 'form-control-sm mr-2' %>
+    <label for='search' class='mr-2'>To:</label>
+    <%= date_field_tag :end_date, params[:search], placeholder: 'Enter end Date', class: 'form-control-sm' %>
+  </div>
+
+  <div class='form-group mb-4'>
+    <label for='search' class='mr-2'>News Release Title:</label>
+    <%= text_field_tag :search, params[:search], placeholder: 'Enter Title', size: 30, class: 'form-control-sm mr-1' %>
+  </div>
+
+  <div class='form-group form-inline'>
+    <label for='Filter by Agency' class='mr-2'>Select Agency:</label>
+    <%= select_tag :agency, options_from_collection_for_select(Agency.all, 'id', 'name', params[:agency_id]), class: 'form-control' %>
+  </div>
+
+  <div class='form-group form-inline'>
+    <label for='Filter by Region' class='mr-2'>Select Region:</label>
+    <%= select_tag :region, options_from_collection_for_select(Region.all, 'id', 'name', params[:region_id]), class: 'form-control' %>
+  </div>
+
+  <div class='form-group form-inline'>
+    <% NewsLog::STATES.each do |state| %>
+      <label for='state' class='mr-2'><%= state %></label>
+      <%= check_box_tag :state, class: 'form-control-sm pl-2' %>
+    <% end %>
+    <br/>
+  </div>
+
+  <div class="form-group">
+    <div><%= submit_tag 'Search' %></div>
+  </div>
+<% end %>
+
+
+
