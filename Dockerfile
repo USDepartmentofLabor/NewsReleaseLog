@@ -15,8 +15,6 @@ EXPOSE 80 443
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-ADD Gemfile* $APP_HOME/
-
 RUN rm -f /etc/service/nginx/down
 
 RUN rm /etc/nginx/sites-enabled/default
