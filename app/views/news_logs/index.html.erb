@@ -1,4 +1,4 @@
-<h1 class='d-inline-block'>News Releases</h1>
+<h1 class='d-inline-block'>News Release List</h1>
 <% if current_user.role.admin? || current_user.role.moderator? %>
   <%= link_to 'Create News Release', new_news_log_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
 <% end %>
