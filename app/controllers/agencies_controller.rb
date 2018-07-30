@@ -4,7 +4,7 @@ class AgenciesController < ApplicationController
   # GET /agencies
   # GET /agencies.json
   def index
-    @agencies = Agency.order(:created_at => "DESC").page params[:page]
+    @agencies = Agency.order('name ASC').page params[:page]
     authorize @agencies
   end
 
