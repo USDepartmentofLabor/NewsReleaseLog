@@ -16,19 +16,18 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 RUN rm -f /etc/service/nginx/down
-
 RUN rm /etc/nginx/sites-enabled/default
-ADD env-config/news_log.conf /etc/nginx/sites-enabled/news_log.conf
 
-ADD env-config/mongodb-env.yml $APP_HOME/conf/mongoid.yml
+COPY --chown=app:app . $APP_HOME
+
+ADD env-config/news_log.conf /etc/nginx/sites-enabled/news_log.conf
+ADD env-config/mongodb-env.yml $APP_HOME/config/mongoid.yml
 
 RUN rvm-exec 2.5.1 bundle install
 
 RUN /bin/bash -l -c "rvm use 2.5.1; rvm @global do gem install bundler"
 
 #RUN bundle exec rails assets:precompile
-
-COPY --chown=app:app . $APP_HOME
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
