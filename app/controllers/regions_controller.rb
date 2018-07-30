@@ -4,7 +4,7 @@ class RegionsController < ApplicationController
   # GET /regions
   # GET /regions.json
   def index
-    @regions = Region.order(:created_at => "DESC").page params[:page]
+    @regions = Region.order('name ASC').page params[:page]
     authorize @regions
   end
 
