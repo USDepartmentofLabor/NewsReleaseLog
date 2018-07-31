@@ -23,7 +23,7 @@
       <% end %>
 
       <% if f.object.new_record? %>
-        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' } %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker',:style => "width: 6em;" } %>
       <% else %>
         <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', disabled: true } %>
       <% end %>
@@ -35,7 +35,7 @@
       <% end %>
       
       <% unless f.object.archived? %>
-        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker' } %>
+        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker',:style => "width: 6em;"} %>
       <% else %>
         <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :disabled => true } %>
       <% end %>
