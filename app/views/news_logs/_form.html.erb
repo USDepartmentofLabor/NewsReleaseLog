@@ -1,4 +1,4 @@
-<%= semantic_form_for(news_log, html: { multipart: true, class: 'm-5 newslog-form'}) do |f| %>
+<%= semantic_form_for(news_log, html: { multipart: true, class: 'm-5 newslog-form my-form'}) do |f| %>
     <%= f.inputs do %>
       <% unless f.object.archived? %>
         <%= f.input :title %>
@@ -23,8 +23,8 @@
       <% end %>
 
       <% if f.object.new_record? %>
-        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker' } %>
-      <% else %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker',:style => "width: 6em;" } %>
+      <% else %>width: 6em;
         <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', disabled: true } %>
       <% end %>
       
@@ -35,7 +35,7 @@
       <% end %>
       
       <% unless f.object.archived? %>
-        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker' } %>
+        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker',:style => "width: 6em;"} %>
       <% else %>
         <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :disabled => true } %>
       <% end %>
