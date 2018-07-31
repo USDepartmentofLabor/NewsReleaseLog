@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    submit:
+      distributionlist:
+        create: "Create Distribution List"
+        update: "Update Distribution List"
