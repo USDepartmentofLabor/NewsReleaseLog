@@ -21,7 +21,7 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY --chown=app:app . $APP_HOME
 
 ADD env-config/news_log.conf /etc/nginx/sites-enabled/news_log.conf
-ADD env-config/mongodb-env.yml $APP_HOME/config/mongoid.yml
+COPY --chown=app:app env-config/mongodb-env.yml $APP_HOME/config/mongoid.yml
 
 RUN rvm-exec 2.5.1 bundle install
 
