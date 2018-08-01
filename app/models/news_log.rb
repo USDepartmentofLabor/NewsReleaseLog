@@ -23,7 +23,7 @@ class NewsLog
   belongs_to :region, optional: true
   has_and_belongs_to_many :distributionlists
 
-  track_history   :on => [:title, :received_date, :release_date, :aasm_state,:document,:agency,:region,:distributionlist_ids],
+  track_history   :on => :all,
                   :modifier_field => :modifier,
                   :modifier_field_inverse_of => :nil,
                   :modifier_field_optional => true,
