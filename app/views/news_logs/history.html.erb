@@ -13,9 +13,21 @@
       <% @histories.each do |log_history| %>
         <tr>
           <td><%= log_history.modifier.email %></td>
-          <td><%= show_news_log_modification log_history %></td> 
-        </tr>
+          <td>
 
+            <% if log_history.version != 1 %>
+              <% log_history.format_existing_track.each do |key, values| %>
+                <p> Changed <%= "#{key}" %> from <%= "#{values[:original]}" %> to <%= "#{values[:changed]}"%> <p>
+              <% end %>
+            <% else %>
+              <p><strong> Created NewsLog </strong><p>
+              <% log_history.format_new_track.each do |key, value| %>
+                <p> <%= "#{key}: " "#{value[:created]}" %> </p>
+              <% end %>
+            <% end %>
+
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
