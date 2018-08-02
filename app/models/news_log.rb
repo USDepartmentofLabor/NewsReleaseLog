@@ -41,7 +41,7 @@ class NewsLog
   validates_presence_of :title, :region, :received_date
   validates_uniqueness_of :news_release_number
 
-  before_validation :assign_nrl_number
+  before_save :assign_nrl_number
 
   # State machine
   aasm do
