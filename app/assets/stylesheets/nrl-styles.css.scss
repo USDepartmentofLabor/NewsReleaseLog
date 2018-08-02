@@ -140,7 +140,7 @@ body {
   border-radius: 0;
 }
 .btn-custom {
-  background-color: #990000;
+  background-color: #000;
   color: #fff;
   margin-top: 2px;
 }
@@ -219,4 +219,9 @@ body {
     border-radius: 5px;
     color: white;
   }
+}
+
+.sign-in-button {
+  color: #fff;
+  background-color: #990000;
 }
