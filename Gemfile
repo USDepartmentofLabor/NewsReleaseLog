@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'mongoid', '~> 6.2.0'
 
 # Frontend web framework for styling
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.1.3'
 gem 'formtastic', '~> 3.0'
 
 #adding font awesome
