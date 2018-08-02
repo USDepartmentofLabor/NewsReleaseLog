@@ -11,7 +11,6 @@ class User
 
   ## Database authenticatable
   field :email,              type: String, default: ""
-  # validates_format_of :email, type: String, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
   field :encrypted_password, type: String, default: ""
   field :first_name,         type: String, default: ""
   field :last_name,         type: String, default: ""
