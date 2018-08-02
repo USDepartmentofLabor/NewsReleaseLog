@@ -1,20 +1,19 @@
- <div class="row">
-  <div class="col-md-6">
-    <div class="container warning-jumbotron mt-5 px-5">
-      <h6 class="text-bold text-danger">WARNING...WARNING...WARNING...WARNING...WARNING</h6>
+<div class="container jumbotron mt-5 px-5">
+    <h6 class="text-center text-bold text-danger text">WARNING...WARNING...WARNING...WARNING...WARNING</h6>
       <p class="text-justify">
         You are accessing a <strong>U.S. Government</strong> information system that is owned and operated by the Department of Labor.<strong class="text-danger">THERE IS NO EXPECTATION OF PRIVACY WHEN ACCESSING THIS SYSTEM.</strong> The Department of Labor information systems are provided for the processing of official U.S. Government information only and are therefore, owned by the Department of Labor. Authorized users are responsible for the proper handling of the Government data equipment and resources which they access.
         
         <strong class="text-danger">USE OF THIS SYSTEM BY ANY USER AUTHORIZED OR UNAUTHORIZED CONSTITUTES CONSENT TO THIS MONITORING, RECORDING, DISCLOSURE, AND ACCEPTS THAT USE OF THIS SYSTEM IS SUBJECT TO AUDIT BY AUTHORIZED PERSONNEL.</strong>
         
-        Fraud and related activity in connection with computers is prohibited by Title 18, U.S. Code Section 1030. Furthermore, this law states that intentionally accessing a computer without authorization or exceeding authorized access and thereby obtaining information from any department or agency of the United States is prohibited and subject to civil and criminal penalties, including (but not limited to), punishment by fine and/or imprisonment. Additionally, DOL may provide law enforcement with any potential evidence of a crime found on aforementioned systems in order for them to investigate such offenses.</p>
-     <h6 class="text-bold text-danger">WARNING...WARNING...WARNING...WARNING...WARNING</h6>
-    </div>
+        Fraud and related activity in connection with computers is prohibited by Title 18, U.S. Code Section 1030. Furthermore, this law states that intentionally accessing a computer without authorization or exceeding authorized access and thereby obtaining information from any department or agency of the United States is prohibited and subject to civil and criminal penalties, including (but not limited to), punishment by fine and/or imprisonment. Additionally, DOL may provide law enforcement with any potential evidence of a crime found on aforementioned systems in order for them to investigate such offenses.
+      </p>
   </div>
-  <div class="col-md-6">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-      <h3>Sign in</h3>
-      <%= devise_error_messages! %>
+
+<div class="container w-50">
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+  <h3 class="text-center">Sign in</h3>
+    <%= devise_error_messages! %>
+      
       <div class="form-group">
         <%- if devise_mapping.registerable? %>
           <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right'  %>
@@ -22,25 +21,26 @@
         <%= f.label :email %>
         <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
       </div>
+      
       <div class="form-group">
         <%= f.label :password %>
         <%= f.password_field :password, class: 'form-control' %>
       </div>
-        <% if devise_mapping.rememberable? -%>
-          <div class="checkbox">
-            <label class="pull-left">
-              <%= f.check_box :remember_me %> Remember me
-            </label>
-            <span class="pull-right">
-               <%- if devise_mapping.recoverable? %>
-                 <div><%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %></div>
-               <% end -%>
-            </span>  
-          </div>
-         <div>
-            <%= f.submit "SIGN IN", class: "btn btn-lg btn-primary btn-block" %>
-         </div>
+      
+      <% if devise_mapping.rememberable? -%>
+        <div class="checkbox">
+          <label class="pull-left">
+            <%= f.check_box :remember_me %> Remember me
+          </label>
+          <span class="pull-right">
+            <%- if devise_mapping.recoverable? %>
+              <div><%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %></div>
+            <% end -%>
+          </span>
+        </div>
+        <div>
+          <%= f.submit "SIGN IN", class: "btn btn-lg sign-in-button btn-block" %>
+        </div>
       <% end -%>
-    <% end %>
-  </div>
-  </div>
+  <% end %>
+</div>
