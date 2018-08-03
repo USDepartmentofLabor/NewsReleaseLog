@@ -48,7 +48,7 @@ class NewsLogsController < ApplicationController
   end
 
   def history
-     @histories = @news_log.history_tracks.order(:version => "ASC").page params[:page]
+     @histories = @news_log.history_tracks.order(:version => "DESC").page params[:page]
   end
 
   # POST /news_logs
