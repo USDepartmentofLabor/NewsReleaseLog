@@ -6,10 +6,8 @@
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th class='font-weight-bold w-25'> News Release Number </th>
-        <th class='font-weight-bold w-25'> News Release Title </th>
-        <th class='font-weight-bold w-25'> Agency </th>
-        <th class='font-weight-bold w-25'> Region </th>
+        <th class='font-weight-bold w-50'> News Release Number </th>
+        <th class='font-weight-bold w-50'> News Release Title </th>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +15,6 @@
         <tr>
           <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
           <td><%= link_to "#{result.title}", news_log_path(result) %></td>
-          <td><%= link_to "#{result.agency.name}", news_log_path(result) %></td>
-          <td><%= link_to "#{result.region.name}", news_log_path(result) %></td>
         </tr>
       <% end %>
     </tbody>
