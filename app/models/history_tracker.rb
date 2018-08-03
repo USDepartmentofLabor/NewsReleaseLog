@@ -16,6 +16,8 @@ class HistoryTracker
           changes["Region"] = { changed: get_region_name(self.modified[key]), original: get_region_name(self.original[key]) }
         when 'distributionlist_ids'
           changes["Distribution Lists"] = { changed: get_distribution_lists(self.modified[key]), original: get_distribution_lists(self.original[key]) }
+        when 'aasm_state'
+          changes['State'] = { changed: self.modified[key], original: self.original[key] }
         end
       end
       changes
