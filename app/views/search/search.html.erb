@@ -17,8 +17,8 @@
         <tr>
           <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
           <td><%= link_to "#{result.title}", news_log_path(result) %></td>
-          <td><%= link_to "#{result.agency.name}", news_log_path(result) %></td>
-          <td><%= link_to "#{result.region.name}", news_log_path(result) %></td>
+          <td><%= "#{result.agency.name}"%></td>
+          <td><%= "#{result.region.name}"%></td>
         </tr>
       <% end %>
     </tbody>

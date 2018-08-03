@@ -41,7 +41,7 @@
       <% end %>
       
       <% unless f.object.archived? %>
-        <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash %>
+        <%= f.input :distributionlists, :label => "Distribution lists", :as => :select, :collection => @distributionlist_hash %>
       <% else %>
         <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash, input_html: { disabled: true } %>
       <% end %>
