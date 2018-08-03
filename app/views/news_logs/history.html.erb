@@ -17,7 +17,7 @@
 
             <% if log_history.version != 1 %>
               <% log_history.format_existing_track.each do |key, values| %>
-                <p> Changed <%= "#{key}" %> from <%= "#{values[:original]}" %> to <%= "#{values[:changed]}"%> <p>
+                <p> Changed <%= "#{key}" %> from <strong><%= "#{values[:original]}" %></strong> to <strong> <%= "#{values[:changed]}"%></strong> <p>
               <% end %>
             <% else %>
               <p><strong> Created NewsLog </strong><p>
