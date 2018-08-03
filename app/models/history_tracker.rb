@@ -28,6 +28,8 @@ class HistoryTracker
     changes = {}
     self.modified.keys.each do |key|
       case key
+      when 'news_release_number'
+        changes['News Release Number'] = { created: self.modified[key] }
       when 'received_date'
         changes["Received Date"] = { created: self.modified[key] }
       when 'release_date'
@@ -40,6 +42,8 @@ class HistoryTracker
         changes["State"] = { created: self.modified[key] }
       when 'distributionlist_ids'
         changes["Distribution Lists"] = { created: get_distribution_lists(self.modified[key]) }
+      when 'document'
+        changes['Document'] = { created: self.modified[key] }
       end
     end
     changes

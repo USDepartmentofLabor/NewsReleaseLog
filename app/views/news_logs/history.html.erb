@@ -1,4 +1,4 @@
-<h1 class='d-inline-block'>News log History Tracker</h1>
+<h3 class='d-inline-block text-muted'>NewsLog history tracker for <%= @news_log.news_release_number %></h3>
 
 <div class='table-responsive'>
   <table class='table table-striped'>
@@ -6,27 +6,28 @@
       <tr>
         <th>User</th>
         <th>Modified</th>
+        <th>Updated at </th>
       </tr>
     </thead>
 
     <tbody>
       <% @histories.each do |log_history| %>
+    
         <tr>
           <td><%= log_history.modifier.email %></td>
           <td>
-
             <% if log_history.version != 1 %>
               <% log_history.format_existing_track.each do |key, values| %>
                 <p> Changed <%= "#{key}" %> from <strong><%= "#{values[:original]}" %></strong> to <strong> <%= "#{values[:changed]}"%></strong> <p>
               <% end %>
             <% else %>
-              <p><strong> Created NewsLog </strong><p>
+              <p><strong> Created News Release </strong><p>
               <% log_history.format_new_track.each do |key, value| %>
                 <p> <%= "#{key}: " "#{value[:created]}" %> </p>
               <% end %>
             <% end %>
-
           </td>
+          <td><%= @news_log.updated_at.localtime %></td>
         </tr>
       <% end %>
     </tbody>
