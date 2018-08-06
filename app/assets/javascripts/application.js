@@ -15,6 +15,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require all
 
 $(document).ready(function(){
   $('.datepicker').datepicker({
