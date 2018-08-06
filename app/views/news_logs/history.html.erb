@@ -18,12 +18,12 @@
           <td>
             <% if log_history.version != 1 %>
               <% log_history.format_existing_track.each do |key, values| %>
-                <p> Changed <%= "#{key}" %> from <strong><%= "#{values[:original]}" %></strong> to <strong> <%= "#{values[:changed]}"%></strong> <p>
+                <p> Changed <%= "#{key}" %> from <strong><%= "#{values[:original]}".capitalize %></strong> to <strong> <%= "#{values[:changed]}".capitalize %></strong> <p>
               <% end %>
             <% else %>
               <p><strong> Created News Release </strong><p>
               <% log_history.format_new_track.each do |key, value| %>
-                <p> <%= "#{key}: " "#{value[:created]}" %> </p>
+                <p> <%= "#{key}: "%> <strong><%= "#{value[:created]}".capitalize %></strong></p>
               <% end %>
             <% end %>
           </td>
