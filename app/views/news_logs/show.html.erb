@@ -2,7 +2,7 @@
   <div>
     <%= link_to 'History', history_news_log_path(@news_log), class: "btn btn-secondary"%>
     <%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-primary" %>
-    <div class='mt-2 mb-3 p-3 bg-info rounded'>
+    <div class='mb-3 p-3 bg-info rounded w-50 mt-4'>
        <strong> Current status of this news release is : <%= @news_log.aasm_state.capitalize %></strong>
     </div>
     <p>
