@@ -33,19 +33,19 @@
           <td class='text-center'>
             <% if policy(news_log).update? %>
               <%= link_to edit_news_log_path(news_log) do %>
-                <i class='fa fa-edit fa-2x' title='Edit NewsLog'></i>
+                <i class='far fa-edit fa-2x' title='Edit NewsLog'></i>
               <% end %>
             <% else %>
-                <i class='fa fa-edit fa-2x fa-edit-disabled' title='Edit NewsLog'></i>
+                <i class='far fa-edit fa-2x custom-color-edit' title='Action not permitted' alt='Action not permitted'></i>
             <% end %>
           </td>
           <td class='text-center'>
             <% if policy(news_log).destroy? %>
               <%= link_to news_log, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <i class='fa fa-trash fa-2x' title='Delete'></i>
+                <i class='far fa-trash-alt fa-2x' title='Delete'></i>
               <% end %>
             <% else %>
-                <i class='fa fa-trash fa-2x fa-trash-disabled' title='Delete'></i> 
+                <i class='far fa-trash-alt fa-2x custom-color-trash' title='Action not permitted' alt='Action not permitted'></i>
             <% end %>
           </td>
         </tr>
