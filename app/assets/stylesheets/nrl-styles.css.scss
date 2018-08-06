@@ -153,13 +153,18 @@ body {
   color: black;
 }
 
-.fa-trash {
+.fa-trash-alt {
   color: red;
 }
 
-.fa-edit-disabled, .fa-trash-disabled{
-  opacity: 0.3;
+.custom-color-edit{
+  color: #A0A0A0;
 }
+
+.custom-color-trash {
+  color: #FF7F7F;
+}
+
 
 //////////////login//////////////////
 

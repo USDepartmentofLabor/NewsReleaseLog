@@ -25,14 +25,14 @@
         <td class='text-center'>
           <% if policy(user).update? %>
             <%= link_to edit_user_path(user) do %>
-              <i class='fa fa-edit fa-2x' title='Edit Agency' alt='Edit Agency'></i>
+              <i class='far fa-edit fa-2x' title='Edit User' alt='Edit User'></i>
             <% end %>
           <% end %>
         </td>
         <td class='text-center'>
           <% if policy(user).destroy? %>
             <%= link_to user_path(user), method: :delete, data: {confirm: 'Are you sure?'} do %>
-              <i class='fa fa-trash fa-2x' title='Delete'></i>
+              <i class='far fa-trash-alt fa-2x' title='Delete User' alt='Delete User'></i>
             <% end %>
           <% end %>
           </td>

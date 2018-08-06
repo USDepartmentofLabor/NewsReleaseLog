@@ -11,6 +11,7 @@
     <% if user_signed_in? %>
     <div class="dropdown">
       <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class='pr-2'><i class="fas fa-user"></i></span>
         <%= current_user.first_name %>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
