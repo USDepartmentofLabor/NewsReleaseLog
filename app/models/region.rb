@@ -5,4 +5,10 @@ class Region
   field :code, type: String
   validates :name, presence: true, uniqueness: true
   validates :code, presence: true, uniqueness: true
+  before_validation :capitalize_attributes
+
+  def capitalize_attributes
+    self.name = self.name.capitalize
+    self.code = self.code.upcase
+  end
 end
