@@ -1,4 +1,4 @@
-<h3 class='d-inline-block text-muted'>NewsLog history tracker for <%= @news_log.news_release_number %></h3>
+<h3 class='d-inline-block text-muted'>News Release History for <%= @news_log.news_release_number %></h3>
 
 <div class='table-responsive'>
   <table class='table table-striped'>
@@ -18,12 +18,16 @@
           <td>
             <% if log_history.version != 1 %>
               <% log_history.format_existing_track.each do |key, values| %>
-                <p> Changed <%= "#{key}" %> from <strong><%= "#{values[:original]}".capitalize %></strong> to <strong> <%= "#{values[:changed]}".capitalize %></strong> <p>
+                <% if key.eql? "Document" %>
+                  <p> Updated document to <strong><%= "#{values[:changed]}" %></strong></p>
+                <% else %>
+                  <p> Changed <%= "#{key}" %> from <strong><%= "#{values[:original]}".capitalize %></strong> to <strong> <%= "#{values[:changed]}".capitalize %></strong> <p>
+                <% end %>
               <% end %>
             <% else %>
               <p><strong> Created News Release </strong><p>
               <% log_history.format_new_track.each do |key, value| %>
-                <p> <%= "#{key}: "%> <strong><%= "#{value[:created]}".capitalize %></strong></p>
+                <p> <%= "#{key}: "%> <strong><%= "#{value[:created]}" %></strong></p>
               <% end %>
             <% end %>
           </td>
