@@ -3,19 +3,17 @@ module Importers
     def headers
       [
         "OPAID",
-        "RegionID",
-        "AgencyID",
+        "RegionName",
+        "AgencyName",
         "OPANumIssueDate",
         "ReceivedDate",
         "ReleaseDate",
-        "OPASeqnum2",
+        "OPASeqnum1",
         "UserInitial",
         "Title",
         "TitleURL",
         "TitleFile",
-        "OPASeqnum2",
-        "FIELD13",
-        "FIELD14"
+        "OPASeqnum2"
       ]
 
 
