@@ -5,15 +5,15 @@
       <% else %>
         <%= f.input :title, input_html: { disabled: true } %>
       <% end %>
-      
+
       <% unless f.object.new_record? %>
         <%= f.input :news_release_number, input_html: { disabled: true } %>
       <% end %>
-      
+
       <% unless f.object.archived? %>
         <%= f.input :region, as: :select, collection: @region_hash %>
       <% else %>
-        <%= f.input :region, as: :select, collection: @region_hash, input_html: { disabled: true } %> 
+        <%= f.input :region, as: :select, collection: @region_hash, input_html: { disabled: true } %>
       <% end %>
 
       <% unless f.object.archived? %>
@@ -23,30 +23,30 @@
       <% end %>
 
       <% if f.object.new_record? %>
-        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker',:style => "width: 6em;" } %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', :class =>"datepicker", :style => "width: 6em;" } %>
       <% else %>
-        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', disabled: true } %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker',  :class =>"datepicker", disabled: true } %>
       <% end %>
-      
+
       <% unless f.object.archived? %>
         <%= f.input :document,:as => :file %>
       <% else %>
         <%= f.input :document,:as => :file, input_html: { disabled: true } %>
       <% end %>
-      
+
       <% unless f.object.archived? %>
-        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker',:style => "width: 6em;"} %>
+        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :class =>"datepicker", :style => "width: 6em;"} %>
       <% else %>
-        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :disabled => true } %>
+        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :class =>"datepicker", :disabled => true } %>
       <% end %>
-      
+
       <% unless f.object.archived? %>
         <%= f.input :distributionlists, :label => "Distribution lists", :as => :select, :collection => @distributionlist_hash %>
       <% else %>
         <%= f.input :distributionlists, :as => :select, :collection => @distributionlist_hash, input_html: { disabled: true } %>
       <% end %>
     <% end %>
-    
+
     <% unless f.object.archived? %>
       <%= f.actions do %>
         <%= news_log_buttons(f,news_log) %>
