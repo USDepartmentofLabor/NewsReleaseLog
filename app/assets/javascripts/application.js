@@ -17,9 +17,9 @@
 //= require bootstrap-datepicker
 //= require all
 
-$(document).ready(function(){
-  $('.datepicker').datepicker({
-    format: 'dd/mm/yyyy',
+$(document).ready(function() {
+  $(".datepicker").datepicker({
+    format: 'mm/dd/yyyy',
     startDate: '-3d'
   });
 });
