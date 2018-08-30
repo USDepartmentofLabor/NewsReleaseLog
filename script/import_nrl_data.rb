@@ -1,23 +1,6 @@
-# def import_employer(in_file)
-#     # config = YAML.load_file("#{Rails.root}/conversions.yml")
-# #  begin
-#     result_file = File.open(File.join(Rails.root, "csv_uploaded_file", "RESULT_" + File.basename(in_file) + ".csv"), 'wb')
-#     importer = Importers::UsersDataSet.new(in_file, result_file)
-#     importer.import!
-#     result_file.close
-# #  rescue
-# #    raise in_file.inspect
-# #  end
-# end
+require 'csv'
 
-# dir_glob = File.join(Rails.root, "csv_file_name","*.{xlsx,csv}")
-# Dir.glob(dir_glob).sort.each do |file|
-#   puts "PROCESSING: #{file}"
-#   import_employer(file)
-# end
-
-
-csv_text = File.read(Rails.root.join('dump', '.csv'))
+csv_text = File.read(Rails.root.join('dump', 'OPARelease_with_name.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   region = Region.find_by_name(row['RegionName'])
