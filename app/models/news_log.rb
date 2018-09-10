@@ -43,6 +43,8 @@ class NewsLog
 
   before_save :assign_nrl_number
 
+  STATES = %w{ draft review published archived }
+
   # State machine
   aasm do
     state :draft, :initial => true
@@ -65,6 +67,10 @@ class NewsLog
 
   def self.search(q)
     NewsLog.where('$or' => [ { news_release_number: { :$regex => /#{q}/i } }, { title: { :$regex => /#{q}/i } } ])
+  end
+
+  def self.advanced_search(keyword, agency_id, region_id)
+    NewsLog.where(agency_id: agency_id).where(region_id: region_id).where('$or' => [ { news_release_number: { :$regex => /#{keyword}/i } }, { title: { :$regex => /#{keyword}/i } } ])
   end
 
   private
