@@ -13,10 +13,9 @@ class SearchController < ApplicationController
   end
 
   def advanced_search_post
-    unless params[:search].blank?
-      results = NewsLog.advanced_search(params[:search], params[:agency], params[:region])
-      @sorted_results = Kaminari.paginate_array(results).page(params[:page]).per(10)
-      render 'search'
-    end
+    search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => [])
+    results = NewsLog.filter(ActionController::Parameters.new(search_params.to_h))
+    @sorted_results = Kaminari.paginate_array(results).page(params[:page]).per(10)
+    render 'search'
   end
 end
