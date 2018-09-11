@@ -65,6 +65,29 @@ class NewsLog
     end
   end
 
+  def self.filter(attributes)
+    attributes.select { |k, v| v.present? }.reduce(all) do |scope, (key, value)|
+      case key.to_sym
+      when :aasm_state
+        scope.where(key => value)
+      when :news_release_number,:title # regexp search
+        scope.where({key => { :$regex => /#{value}/i }})
+      when :received_date
+        scope.between(:received_date => (value[:start_date]..value[:end_date]))
+      when :agency
+        agency = Agency.where(:code => value).first
+        scope.where(:agency_id => agency.id) if agency
+      when :region
+        region = Region.where(:name => value).first
+        scope.where(:region_id => region.id) if region
+      when :order_by
+        scope.order_by(:created_at => value)
+      else
+        scope
+      end
+    end
+  end
+
   def self.search(q)
     NewsLog.where('$or' => [ { news_release_number: { :$regex => /#{q}/i } }, { title: { :$regex => /#{q}/i } } ])
   end
