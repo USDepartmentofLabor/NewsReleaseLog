@@ -1,27 +1,33 @@
 <h1> Search Results </h1>
-<% if @sorted_results.count == 0 %>
+<% if @page_results.count == 0 %>
   <p> Sorry, no results found </p>
 <% end %>
 <div class='table-responsive'>
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th class='font-weight-bold w-25'> News Release Number </th>
-        <th class='font-weight-bold w-25'> News Release Title </th>
-        <th class='font-weight-bold w-25'> Agency </th>
-        <th class='font-weight-bold w-25'> Region </th>
+        <th class='font-weight-bold w-15'> News Release Number </th>
+        <th class='font-weight-bold w-15'> News Release Title </th>
+        <th class='font-weight-bold w-10'> Agency </th>
+        <th class='font-weight-bold w-15'> Region </th>
+        <th class='font-weight-bold w-15'> State </th>
+        <th class='font-weight-bold w-15'> Release Date </th>
+        <th class='font-weight-bold w-15'> Received Date </th>
       </tr>
     </thead>
     <tbody>
-      <% @sorted_results.each do |result| %>
+      <% @page_results.each do |result| %>
         <tr>
           <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
           <td><%= link_to "#{result.title}", news_log_path(result) %></td>
           <td><%= "#{result.agency.name}"%></td>
           <td><%= "#{result.region.name}"%></td>
+          <td><%= "#{result.aasm_state}"%></td>
+          <td><%= "#{result.release_date}"%></td>
+          <td><%= "#{result.received_date}"%></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-<%= paginate @sorted_results %>
+<%= paginate @page_results if @page_results.present?%>
