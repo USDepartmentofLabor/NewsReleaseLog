@@ -13,9 +13,13 @@ class SearchController < ApplicationController
   end
 
   def advanced_search_post
-    search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => [])
-    results = NewsLog.filter(ActionController::Parameters.new(search_params.to_h))
-    @sorted_results = Kaminari.paginate_array(results).page(params[:page]).per(10)
+    search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => {},:received_date=>{},:aasm_state =>[])
+    results = NewsLog.filter(search_params.to_h)
+    if results.present?
+     @page_results = Kaminari.paginate_array(results).page(params[:page]).per(10)
+    else
+     @page_results=[]
+    end
     render 'search'
   end
 end
