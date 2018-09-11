@@ -69,17 +69,21 @@ class NewsLog
     attributes.select { |k, v| v.present? }.reduce(all) do |scope, (key, value)|
       case key.to_sym
       when :aasm_state
-        scope.where(key => value)
+        scope.where(key.to_sym.in => value)
       when :news_release_number,:title # regexp search
         scope.where({key => { :$regex => /#{value}/i }})
-      when :received_date
-        scope.between(:received_date => (value[:start_date]..value[:end_date]))
+      when :received_date,:release_date
+        if value[:start_date].present? && value[:end_date].present?
+          scope.between(key => (value[:start_date]..value[:end_date]))
+        else
+          scope
+        end
       when :agency
         agency = Agency.where(:code => value).first
-        scope.where(:agency_id => agency.id) if agency
+        agency.present? ? scope.where(:agency_id => agency.id.to_s) : scope
       when :region
         region = Region.where(:name => value).first
-        scope.where(:region_id => region.id) if region
+        region.present? ? scope.where(:region_id => region.id.to_s) : scope
       when :order_by
         scope.order_by(:created_at => value)
       else
