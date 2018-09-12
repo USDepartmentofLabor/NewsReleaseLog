@@ -25,6 +25,7 @@ csv.each do |row|
   d.aasm_state ="published"
   d.agency = agency.id
   d.region = region.id
+  d.imported_from_old = true
   d.user = User.first
   if d.save
   	puts "Successfully saved #{row['OPAID']}"
