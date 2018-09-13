@@ -11,7 +11,7 @@ class NewsLog
   field :news_release_number, type: String
   field :aasm_state
   field :opa_id,  type: Integer
-  field :imported_from_old ,  type: boolean
+  field :imported_from_old_system ,  type: Boolean
   
   mount_uploader :document, DokumentUploader
 
