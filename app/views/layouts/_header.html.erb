@@ -20,6 +20,7 @@
         <% if current_user.role.admin? %>
           <%= link_to 'Manage Users', users_path, method: :get, class: "dropdown-item" %>
         <% end %>
+        <%= link_to 'Advanced Search', advsearch_path, method: :get, class: 'dropdown-item' %> 
         <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
     </div>

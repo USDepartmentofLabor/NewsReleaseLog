@@ -45,6 +45,8 @@ class NewsLog
 
   before_save :assign_nrl_number
 
+  STATES = %w{ draft review published archived }
+
   # State machine
   aasm do
     state :draft, :initial => true
@@ -65,8 +67,39 @@ class NewsLog
     end
   end
 
+  def self.filter(attributes)
+    attributes.select { |k, v| v.present? }.reduce(all) do |scope, (key, value)|
+      case key.to_sym
+      when :aasm_state
+        scope.where(key.to_sym.in => value)
+      when :news_release_number,:title # regexp search
+        scope.where({key => { :$regex => /#{value}/i }})
+      when :received_date,:release_date
+        if value[:start_date].present? && value[:end_date].present?
+          scope.between(key => (value[:start_date]..value[:end_date]))
+        else
+          scope
+        end
+      when :agency
+        agency = Agency.where(:code => value).first
+        agency.present? ? scope.where(:agency_id => agency.id.to_s) : scope
+      when :region
+        region = Region.where(:name => value).first
+        region.present? ? scope.where(:region_id => region.id.to_s) : scope
+      when :order_by
+        scope.order_by(:created_at => value)
+      else
+        scope
+      end
+    end
+  end
+
   def self.search(q)
     NewsLog.where('$or' => [ { news_release_number: { :$regex => /#{q}/i } }, { title: { :$regex => /#{q}/i } } ])
+  end
+
+  def self.advanced_search(keyword, agency_id, region_id)
+    NewsLog.where(agency_id: agency_id).where(region_id: region_id).where('$or' => [ { news_release_number: { :$regex => /#{keyword}/i } }, { title: { :$regex => /#{keyword}/i } } ])
   end
 
   private

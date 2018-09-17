@@ -20,13 +20,14 @@
       </li>
 
       <li class="nav-item">
-        <%= link_to "Manage Distribution Lists", distributionlists_path, class: 'nav-link mr-4'%>
+        <%= link_to "Manage Distribution Lists", distributionlists_path, class: 'nav-link mr-2'%>
       </li>
+
     </ul>
 
     <%= form_tag news_logs_search_url, method: :get, class: 'form-inline mt-2 mt-md-0' do %>
        <div class="form-group">
-         <%= text_field_tag :search, params[:search], placeholder: 'Enter Release number or Title', size: 30, class: 'form-control-sm mr-1' %>
+         <%= text_field_tag :search, params[:menubar_search], placeholder: 'Enter Release number or Title', size: 30, class: 'form-control-sm mr-1' %>
          <%= button_tag type: 'submit' do %>
           <i class="fa fa-search" aria-hidden='true'  aria-label='Search news release'}></i>
          <% end %>
