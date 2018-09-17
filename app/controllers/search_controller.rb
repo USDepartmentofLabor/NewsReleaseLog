@@ -8,23 +8,18 @@ class SearchController < ApplicationController
     end
   end
 
-  # def advanced_search_get
-  #   render :advanced_search
-  # end
-
   def advanced_search
     if params[:search].present?
       search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => {},:received_date=>{},:aasm_state =>[])
       results = NewsLog.filter(search_params.to_h)
       if results.present?
        @page_results = Kaminari.paginate_array(results).page(params[:page]).per(25)
-      else 
+      else
         @page_results=[]
       end
       render 'search'
     else
       render 'advanced_search'
     end
-    
   end
 end
