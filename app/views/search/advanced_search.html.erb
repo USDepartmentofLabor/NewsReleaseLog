@@ -1,0 +1,55 @@
+ <div class="container-fluid">
+  <h1>Advanced Search</h1>
+<p>To search DOL News Release Log, enter the appropriate release number or title, select the appropriate agency and region and then click the search button.</p>
+<%= form_tag advsearch_url, method: :post, class: 'mt-2 mt-md-0' do %>
+  <div class='form-group row'>
+  <div class="col-md-6">
+  <label for='search' class='mr-2'>Release date From:</label>
+    <%= date_field_tag "search[release_date][start_date]", params[:start_date],placeholder: 'Enter start Date', class: 'form-control-sm mr-2 input-margin' %>
+  </div>
+    <div class='col-md-6'>
+    <label for='search' class='mr-2'>Release date To:</label>
+    <%= date_field_tag "search[release_date][end_date]", params[:end_date] ,placeholder: 'Enter end Date', class: 'form-control-sm input-margin' %>
+  </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-md-6'>
+    <label for='search' class='mr-2'>Received date From:</label>
+    <%= date_field_tag "search[received_date][start_date]",params[:start_date], placeholder: 'Enter start Date', class: 'form-control-sm mr-2' %>
+    </div>
+    <div class='col-md-6'>
+    <label for='search' class='mr-2'>Received date To:</label>
+    <%= date_field_tag "search[received_date][end_date]",params[:end_date], placeholder: 'Enter end Date', class: 'form-control-sm' %>
+    </div>
+  </div>
+
+  <div class='form-group row'>
+    <div class='col-md-6'>
+      <label for='Filter by Agency' class='mr-2'>Select Agency:</label>
+      <%= select_tag "search[agency]", options_from_collection_for_select(Agency.all, 'code','code'), include_blank: true, class: 'form-control-md drop-down-margin' %>
+    </div>
+   <div class='col-md-6'>
+     <label for='Filter by Region' class='mr-2'>Select Region:</label>
+    <%= select_tag "search[region]", options_from_collection_for_select(Region.all, 'name', 'name'), include_blank: true, class: 'form-control-md drop-down-margin' %>
+   </div>
+  </div>
+
+ <div class='form-group mb-4'>
+    <label for='search[title]' class='mr-2'>News Release Title:</label>
+    <%= text_field_tag "search[title]",params[:title] ,placeholder: 'Enter Title', size: 30, class: 'form-control-sm mr-1 input-margin' %>
+  </div>
+
+  <div class='form-group form-inline'>
+    <% NewsLog::STATES.each do |state| %>
+    <%= check_box_tag "search[aasm_state][]", state, checked: false, class: 'form-control-sm pl-2' -%>
+    <label for='aasm_state' class='mr-2 aasm-state-font'><%= state -%></label>
+    <% end %>
+    <br/>
+  </div>
+
+  <div class="form-group">
+    <div><%= submit_tag 'Search',class: 'btn btn-dark btn-sm custom-button mr-2' %></div>
+  </div>
+<% end %>
+<div>
