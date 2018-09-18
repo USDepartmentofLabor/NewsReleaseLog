@@ -15,6 +15,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require jquery.tablesorter.min
 //= require all
 
 $(document).ready(function() {
@@ -22,4 +23,8 @@ $(document).ready(function() {
     format: 'mm/dd/yyyy',
     startDate: '-3d'
   });
+});
+
+$(document).ready(function() {
+  $("[id$=table-sortable]").tablesorter();
 });
