@@ -102,7 +102,7 @@ class NewsLogsController < ApplicationController
     end
 
     def set_form_data
-      @agency_hash ||= Hash[Agency.all.map{|b| [b.name,b.id]}]
+      @agency_hash = Hash[Agency.order_by([ :frequently_used, -1 ]).all.map{|b| [b.name,b.id]}]
       @region_hash ||= Hash[Region.all.map{|b| [b.name,b.id]}]
       @distributionlist_hash ||= Hash[Distributionlist.all.map{|b| [b.name,b.id]}]
     end
