@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def search
     unless params[:search].blank?
       results = NewsLog.search(params[:search])
-      @page_results = Kaminari.paginate_array(results).page(params[:page]).per(10)
+      @page_results = Kaminari.paginate_array(results).page(params[:page])
     else
       redirect_to root_path, alert: "Please enter a valid Title or NewsRelease number"
     end
@@ -13,7 +13,7 @@ class SearchController < ApplicationController
       search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => {},:received_date=>{},:aasm_state =>[])
       results = NewsLog.filter(search_params.to_h)
       if results.present?
-       @page_results = Kaminari.paginate_array(results).page(params[:page]).per(25)
+       @page_results = Kaminari.paginate_array(results).page(params[:page])
       else
         @page_results=[]
       end
