@@ -3,7 +3,7 @@ class Agency
   include Mongoid::Timestamps
   field :name, type: String
   field :code, type: String
-  field :frequently_used, type: Boolean
+  field :frequently_used, type: Boolean, default: false
   validates :name, presence: true, uniqueness: true
   validates :code, presence: true, uniqueness: true
   before_validation :capitalize_attributes
