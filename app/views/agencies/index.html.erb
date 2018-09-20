@@ -7,9 +7,10 @@
   <table id="agency-table-sortable" class='table table-striped'>
     <thead>
       <tr>
-        <th class='w-50'>Agency Name <i class="fa fa-fw fa-sort"></th>
-        <th class='w-50'>Agency Code <i class="fa fa-fw fa-sort"></th>
-        <th colspan='2' class='text-center'>Actions</th>
+        <th class='w-25'>Agency Name <i class="fa fa-fw fa-sort"></th>
+        <th class='w-25'>Agency Code <i class="fa fa-fw fa-sort"></th>
+        <th class='w-25'>Frequently used <i class="fa fa-fw fa-sort"></th>
+        <th colspan='2' class='text-center w-25'>Actions</th>
       </tr>
     </thead>
 
@@ -18,7 +19,8 @@
         <tr>
           <td class='font-weight-bold'><%= link_to "#{agency.name}", agency %></td>
           <td class='font-weight-bold'><%= agency.code %></td>
-          <td class='text-center ml-2'>
+          <td class='font-weight-bold'><%= agency.frequently_used.to_s.upcase %></td>
+          <td class='text-right ml-4'>
             <% if policy(agency).update? %>
               <%= link_to edit_agency_path(agency) do %>
                 <i class='far fa-edit fa-2x' title='Edit Agency' alt='Edit Agency'></i>
@@ -27,7 +29,7 @@
               <i class='far fa-edit fa-2x custom-color-edit' title='Action not permitted' alt='Action Not Permitted'></i>
             <% end %>
           </td>
-          <td class='text-center mr-2'>
+          <td class='text-left mr-4'>
             <% if policy(agency).destroy? %>
               <%= link_to agency, method: :delete, data: { confirm: 'Are you sure?' } do %>
                 <i class='far fa-trash-alt fa-2x' title='Delete Agency' alt='Delete Agency'></i>

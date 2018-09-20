@@ -8,7 +8,7 @@ class Region
   before_validation :capitalize_attributes
 
   def capitalize_attributes
-    self.name = self.name.capitalize
+    self.name = self.name.upcase
     self.code = self.code.upcase
   end
 end
