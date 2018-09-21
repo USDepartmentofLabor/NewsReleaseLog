@@ -9,6 +9,7 @@ csv.each do |row|
   t = Agency.new
   t.name = row['AgencyName']
   t.code = row["AgencyName"]
+  t.frequently_used = row["FrequentlyUsed"]
   t.save
   puts "#{t.name}, #{t.code} saved"
 end

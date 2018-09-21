@@ -4,6 +4,8 @@ class NewsLog
   include AASM
   include Mongoid::History::Trackable
 
+  attr_accessor :skip_callbacks
+
   # Fields
   field :received_date, type: Date
   field :release_date, type: Date
@@ -12,7 +14,7 @@ class NewsLog
   field :aasm_state
   field :opa_id,  type: Integer
   field :imported_from_old_system ,  type: Boolean
-  
+
   mount_uploader :document, DokumentUploader
 
   index({ news_release_number: 'text' })
@@ -44,6 +46,8 @@ class NewsLog
   validates_uniqueness_of :news_release_number
 
   before_save :assign_nrl_number
+  skip_callback :save, :before, :assign_nrl_number, if: :skip_callbacks
+
 
   STATES = %w{ draft review published archived }
 
