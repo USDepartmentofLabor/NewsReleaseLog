@@ -63,6 +63,10 @@ gem 'mongoid-history'
 # Adding enumerize attributes
 gem 'enumerize', '~> 2.2', '>= 2.2.2'
 
+#adding wicked-pdf gem for download documents
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # File upload
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'

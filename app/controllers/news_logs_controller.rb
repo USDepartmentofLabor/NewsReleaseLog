@@ -51,6 +51,24 @@ class NewsLogsController < ApplicationController
      @histories = @news_log.history_tracks.order(:version => "DESC").page params[:page]
   end
 
+  # def download_resume
+  #   pdf = WickedPdf.new.pdf_from_string(
+  #   render_to_string(‘products/index.html.erb’, layout: false)
+  #   )
+  #   send_data pdf, :filename => “resume.pdf”, :type => “application/pdf”, :disposition => “attachment”
+  # end
+
+  def report_export
+    @images_path = "#{request.protocol}#{request.host_with_port}/assets"
+    pdf = render_to_string  pdf: "project_report.pdf",
+      layout: ‘pdf_mode.html.erb’,
+      show_as_html: false,
+      encoding: "UTF-8",
+      template: 'news_log/report.html.erb',
+      footer: { html: { template: ‘shared/pdf_footer.html.erb’ } }
+    send_data pdf, filename: "project_report#{@project.id}.pdf", type: "application/pdf", disposition: "attachment"
+  end
+
   # POST /news_logs
   # POST /news_logs.json
   def create
