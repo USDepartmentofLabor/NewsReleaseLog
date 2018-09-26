@@ -17,9 +17,9 @@
       <% end %>
 
       <% unless f.object.archived? %>
-        <%= f.input :agency, as: :select, collection: @agency_hash %>
+        <%= f.input :agency, as: :select, collection: grouped_options_for_select(@agency_hash) %>
       <% else %>
-        <%= f.input :agency, as: :select, collection: @agency_hash, input_html: { disabled: true } %>
+        <%= f.input :agency, as: :select, collection: grouped_options_for_select(@agency_hash), input_html: { disabled: true } %>
       <% end %>
 
       <% if f.object.new_record? %>
