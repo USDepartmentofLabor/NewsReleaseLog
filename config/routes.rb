@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :regions
   resources :agencies
   resources :news_logs do
-    get :download_resume
+    get :report
   end
   resources :news_logs  do
     collection do
