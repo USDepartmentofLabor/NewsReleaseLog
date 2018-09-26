@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  before_action :authenticate_user!
   def search
     unless params[:search].blank?
       results = NewsLog.search(params[:search])
