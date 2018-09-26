@@ -1,7 +1,7 @@
 class NewsLogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_news_log, only: [:show, :edit, :update, :destroy,:get_document,:history]
-  before_action :set_form_data, only: [:new, :edit]
+  before_action :set_form_data, only: [:new, :edit, :create]
   # GET /news_logs
   # GET /news_logs.json
   def index
@@ -102,7 +102,7 @@ class NewsLogsController < ApplicationController
     end
 
     def set_form_data
-      @agency_hash = { "Frequently Used" => Agency.where(:frequently_used => true).all.map{|b| [b.name,b.id]},
+      @agency_hash ||= { "Frequently Used" => Agency.where(:frequently_used => true).all.map{|b| [b.name,b.id]},
         "--------------" => Agency.where(:frequently_used.ne => true).all.map{|b| [b.name,b.id]}}
       @region_hash ||= Hash[Region.all.map{|b| [b.name,b.id]}]
       @distributionlist_hash ||= Hash[Distributionlist.all.map{|b| [b.name,b.id]}]
