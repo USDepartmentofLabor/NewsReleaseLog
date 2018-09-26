@@ -102,7 +102,8 @@ class NewsLogsController < ApplicationController
     end
 
     def set_form_data
-      @agency_hash = Hash[Agency.order_by([ :frequently_used, -1 ]).all.map{|b| [b.name,b.id]}]
+      @agency_hash = { "Frequently Used" => Agency.where(:frequently_used => true).all.map{|b| [b.name,b.id]},
+        "--------------" => Agency.where(:frequently_used.ne => true).all.map{|b| [b.name,b.id]}}
       @region_hash ||= Hash[Region.all.map{|b| [b.name,b.id]}]
       @distributionlist_hash ||= Hash[Distributionlist.all.map{|b| [b.name,b.id]}]
     end
