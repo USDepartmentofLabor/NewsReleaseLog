@@ -19,7 +19,7 @@
       <% @page_results.each do |result| %>
         <tr>
           <td ><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
-          <td ><%= link_to "#{result.title}", news_log_path(result) %></td>
+          <td class='w-25'><%= link_to "#{result.title}", news_log_path(result) %></td>
           <td ><%= "#{result.agency.name}"%></td>
           <td ><%= "#{result.region.name}"%></td>
           <td ><%= "#{result.aasm_state}"%></td>
