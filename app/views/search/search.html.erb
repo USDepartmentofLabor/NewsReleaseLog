@@ -5,26 +5,26 @@
 <div class='table-responsive'>
   <table id="searchresult-table-sortable" class='table table-striped'>
     <thead>
-      <tr>
-        <th class='font-weight-bold w-15'> News Release Number <i class="fa fa-fw fa-sort"></th>
-        <th class='font-weight-bold w-15'> News Release Title <i class="fa fa-fw fa-sort"></th>
-        <th class='font-weight-bold w-10'> Agency <i class="fa fa-fw fa-sort"></th>
-        <th class='font-weight-bold w-15'> Region <i class="fa fa-fw fa-sort"></th>
-        <th class='font-weight-bold w-15'> State <i class="fa fa-fw fa-sort"></th>
-        <th class='font-weight-bold w-15'> Release Date <i class="fa fa-fw fa-sort"></th>
-        <th class='font-weight-bold w-15'> Received Date <i class="fa fa-fw fa-sort"></th>
+      <tr class="mw-100">
+        <th class='font-weight-bold' scope="col"> Release # <i class="fa fa-fw fa-sort"></th>
+        <th class='font-weight-bold' scope="col"> Release Title <i class="fa fa-fw fa-sort"></th>
+        <th class='font-weight-bold' scope="col"> Agency <i class="fa fa-fw fa-sort"></th>
+        <th class='font-weight-bold' scope="col"> Region <i class="fa fa-fw fa-sort"></th>
+        <th class='font-weight-bold' scope="col"> State <i class="fa fa-fw fa-sort"></th>
+        <th class='font-weight-bold' scope="col"> Release Date <i class="fa fa-fw fa-sort"></th>
+        <th class='font-weight-bold' scope="col"> Received Date <i class="fa fa-fw fa-sort"></th>
       </tr>
     </thead>
     <tbody>
       <% @page_results.each do |result| %>
         <tr>
-          <td><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
-          <td><%= link_to "#{result.title}", news_log_path(result) %></td>
-          <td><%= "#{result.agency.name}"%></td>
-          <td><%= "#{result.region.name}"%></td>
-          <td><%= "#{result.aasm_state}"%></td>
-          <td><%= "#{result.release_date}"%></td>
-          <td><%= "#{result.received_date}"%></td>
+          <td ><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
+          <td ><%= link_to "#{result.title}", news_log_path(result) %></td>
+          <td ><%= "#{result.agency.name}"%></td>
+          <td ><%= "#{result.region.name}"%></td>
+          <td ><%= "#{result.aasm_state}"%></td>
+          <td ><%= "#{result.release_date}"%></td>
+          <td ><%= "#{result.received_date}"%></td>
         </tr>
       <% end %>
     </tbody>
