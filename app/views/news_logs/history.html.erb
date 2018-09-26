@@ -12,9 +12,12 @@
 
     <tbody>
       <% @histories.each do |log_history| %>
-    
         <tr>
+          <%if log_history.modifier.present? %>
           <td><%= log_history.modifier.email %></td>
+          <%elsif @news_log.imported_from_old_system %>
+          <td class="mw-25">SYSTEM(imported from old system)</td>
+          <%end%>
           <td>
             <% if log_history.version != 1 %>
               <% log_history.format_existing_track.each do |key, values| %>
