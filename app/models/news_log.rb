@@ -42,7 +42,7 @@ class NewsLog
 
 
   # Validations
-  validates_presence_of :title, :region, :received_date
+  validates_presence_of :title, :region, :agency, :received_date
   validates_uniqueness_of :news_release_number
 
   before_save :assign_nrl_number
