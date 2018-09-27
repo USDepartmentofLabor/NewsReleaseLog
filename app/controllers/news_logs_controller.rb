@@ -1,7 +1,7 @@
 class NewsLogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_news_log, only: [:show, :edit, :update, :destroy,:get_document,:history]
-  before_action :set_form_data, only: [:new, :edit, :create]
+  before_action :set_form_data, only: [:new, :edit, :create, :update]
   # GET /news_logs
   # GET /news_logs.json
   def index
