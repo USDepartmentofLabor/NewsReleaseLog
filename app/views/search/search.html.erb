@@ -30,5 +30,5 @@
     </tbody>
   </table>
 </div>
-<%= link_to 'Back', "/advsearch", class: 'btn btn-dark btn-sm custom-button' %>
+<%= link_to 'Back', url_for(:back), class: 'btn btn-dark btn-sm custom-button' %>
 <%= paginate @page_results if @page_results.present?%>
