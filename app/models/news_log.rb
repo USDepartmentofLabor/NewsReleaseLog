@@ -101,9 +101,9 @@ class NewsLog
 
   def self.to_csv(newslogs)
      CSV.generate(headers: true) do |csv|
-      attributes = %w{Release# Title ReleaseDate Received_Dates}
+      csv << %w{Release# Title ReleaseDate Received_Dates Status Agency Region}
        newslogs.all.each do |newslog|
-           csv << "#{newslog.news_release_number},#{newslog.title},#{newslog.release_date},#{newslog.received_date}"
+           csv << [newslog.news_release_number,newslog.title,newslog.release_date,newslog.received_date,newslog.aasm_state,newslog.agency.code, newslog.region.name]
        end
      end
   end
