@@ -23,9 +23,9 @@
       <% end %>
 
       <% if f.object.new_record? %>
-        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', :class =>"datepicker", :style => "width: 6em;" } %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', 'value' => f.object.received_date.strftime("%m/%d/%Y"), :class =>"datepicker", :style => "width: 6em;" } %>
       <% else %>
-        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker',  :class =>"datepicker", disabled: true } %>
+        <%= f.input :received_date, input_html: { 'data-provide' => 'datepicker', 'value' => f.object.received_date.strftime("%m/%d/%Y"), :class =>"datepicker", disabled: true } %>
       <% end %>
 
       <% unless f.object.archived? %>
@@ -35,9 +35,9 @@
       <% end %>
 
       <% unless f.object.archived? %>
-        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :class =>"datepicker", :style => "width: 6em;"} %>
+        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', 'value' => f.object.release_date.strftime("%m/%d/%Y"), :class =>"datepicker", :style => "width: 6em;"} %>
       <% else %>
-        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', :class =>"datepicker", :disabled => true } %>
+        <%= f.input :release_date, input_html: { 'data-provide' => 'datepicker', 'value' => f.object.release_date.strftime("%m/%d/%Y"), :class =>"datepicker", :disabled => true } %>
       <% end %>
 
       <% unless f.object.archived? %>
