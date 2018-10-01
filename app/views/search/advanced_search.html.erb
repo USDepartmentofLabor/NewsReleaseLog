@@ -1,7 +1,7 @@
  <div class="container-fluid">
   <h1>Advanced Search</h1>
 <p>To search DOL News Release Log, enter the appropriate release number or title, select the appropriate agency and region and then click the search button.</p>
-<%= form_tag advsearch_url, method: :post, class: 'mt-2 mt-md-0' do %>
+<%= form_tag advsearch_url, class: 'mt-2 mt-md-0' do %>
   <div class='form-group row'>
   <div class="col-md-6">
   <label for='search' class='mr-2'>Release date From:</label>
@@ -49,7 +49,8 @@
   </div>
 
   <div class="form-group">
-    <div><%= submit_tag 'Search',class: 'btn btn-dark btn-sm custom-button mr-2' %></div>
+    <div><%= submit_tag 'Search' ,class: 'btn btn-dark btn-sm custom-button mr-2' %> </div>
+    <div><%= submit_tag 'Download', formaction: "/advsearch.csv" , class: 'btn btn-dark btn-sm custom-button mr-2' %></div>
   </div>
 <% end %>
 <div>
