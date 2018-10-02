@@ -81,8 +81,8 @@ class NewsLog
         scope.where({key => { :$regex => /#{value}/i }})
       when :received_date,:release_date
         if value[:start_date].present? && value[:end_date].present?
-          start_date = Time.strptime(value[:start_date], "%m/%d/%Y")
-          end_date = Time.strptime(value[:end_date], "%m/%d/%Y")
+          start_date = Date.strptime(value[:start_date], "%m/%d/%Y")
+          end_date = Date.strptime(value[:end_date], "%m/%d/%Y")
           scope.between(key => (start_date..end_date))
         else
           scope
