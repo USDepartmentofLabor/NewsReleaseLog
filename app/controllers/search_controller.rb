@@ -2,8 +2,8 @@ class SearchController < ApplicationController
   before_action :authenticate_user!
   def search
     unless params[:search].blank?
-      results = NewsLog.search(params[:search])
-      @page_results = Kaminari.paginate_array(results).page(params[:page])
+      @results = NewsLog.search(params[:search])
+      @page_results = Kaminari.paginate_array(@results).page(params[:page])
     else
       redirect_to root_path, alert: "Please enter a valid Title or NewsRelease number"
     end
@@ -12,13 +12,17 @@ class SearchController < ApplicationController
   def advanced_search
     if params[:search].present?
       search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => {},:received_date=>{},:aasm_state =>[])
-      results = NewsLog.filter(search_params.to_h)
-      if results.present?
-       @page_results = Kaminari.paginate_array(results).page(params[:page])
+      @results = NewsLog.filter(search_params.to_h)
+      if @results.present?
+       @page_results = Kaminari.paginate_array(@results).page(params[:page])
       else
         @page_results=[]
       end
-      render 'search'
+      # byebug
+      respond_to do |format|
+        format.html { render 'search' }
+        format.csv { send_data NewsLog.to_csv(@results), filename: "news-log-report-#{Date.today}.csv" }
+      end
     else
       render 'advanced_search'
     end
