@@ -1,7 +1,10 @@
 <h1> Search Results </h1>
-<% if @page_results.count == 0 %>
-  <p> Sorry, no results found </p>
-<% end %>
+<p> Total results found <%=@results.count%><p>
+<div>
+  <span> To further narrow down your results you can try the advance search feature </span>
+  <%= link_to 'Advance Search', advsearch_url , class: 'btn btn-dark mb-2 add-button' %>
+</div>
+
 <div class='table-responsive'>
   <table id="searchresult-table-sortable" class='table table-striped'>
     <thead>
@@ -16,6 +19,9 @@
       </tr>
     </thead>
     <tbody>
+      <% if @page_results.count == 0 %>
+        <p> Sorry, no results found </p>
+      <% end %>
       <% @page_results.each do |result| %>
         <tr>
           <td ><%= link_to "#{result.news_release_number}", news_log_path(result) %></td>
