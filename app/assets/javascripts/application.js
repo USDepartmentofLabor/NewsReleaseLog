@@ -12,17 +12,14 @@
 //
 //= require jquery3
 //= require jquery_ujs
+//= require jquery-ui/widgets/datepicker
 //= require popper
 //= require bootstrap-sprockets
-//= require bootstrap-datepicker
 //= require jquery.tablesorter.min
 //= require all
 
-$(document).ready(function() {
-  $(".datepicker").datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
-  });
+jQuery(function() {
+  return $('.datepicker').datepicker();
 });
 
 $(document).ready(function() {
