@@ -40,6 +40,9 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 # Addition dependency for bootstrap
 gem 'jquery-rails'
 
+# JQuery UI Datepicker
+gem 'jquery-ui-rails'
+
 #Authentication
 gem 'devise'
 
@@ -53,9 +56,6 @@ gem 'aasm'
 gem 'kaminari'
 gem 'kaminari-mongoid'
 gem 'kaminari-actionview'
-
-# Bootstrap datepicker gem
-gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 
 # Auditing mongodb documents
 gem 'mongoid-history'
