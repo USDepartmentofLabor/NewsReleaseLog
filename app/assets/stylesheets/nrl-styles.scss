@@ -1,0 +1,28 @@
+// Import styles of multiple components
+// Use only the scss syntax here
+
+@import "styles/nrl-variables";
+@import "styles/nrl-advanced-search";
+@import "styles/nrl-buttons";
+@import "styles/nrl-forms";
+@import "styles/nrl-header";
+@import "styles/nrl-navbar-header-footer";
+@import "styles/nrl-pagination";
+@import "styles/nrl-status-icons";
+
+/// General styling for body ///
+body {
+  font-size: 1em;
+  font-family: Helvetica, sans-serif;
+}
+
+/// Table style ///
+.table {
+  font-size: 0.8em;
+}
+
+/// Sign in page ///
+
+.warning-text {
+  color: $trash-button-color;
+}
