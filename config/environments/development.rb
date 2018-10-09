@@ -32,7 +32,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = { address: "mailcatcher.address", port: "25" }
 
 
-  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.ico *.eot *.ttf)
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.ico *.eot *.ttf *.scss *.js)
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

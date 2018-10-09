@@ -21,11 +21,11 @@ module NewsLogsHelper
     when "draft"
       "bg-dark"
     when "review"
-      "bg-info"
+      'review-status-bg'
     when "published"
-      "bg-success"
+      'published-status-bg'
     when "archived"
-      "bg-warning"
+      'archive-status-bg'
     else
       "bg-dark"
     end
