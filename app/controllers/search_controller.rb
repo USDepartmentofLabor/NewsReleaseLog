@@ -1,5 +1,8 @@
 class SearchController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_if_all_empty_params, only: [:advanced_search]
+  before_action :check_start_from_dates, only: [:advanced_search]
+
   def search
     unless params[:search].blank?
       @results = NewsLog.search(params[:search])
@@ -25,6 +28,34 @@ class SearchController < ApplicationController
       end
     else
       render 'advanced_search'
+    end
+  end
+
+  def check_start_from_dates
+    unless params[:search].nil?
+      if params.dig(:search, :release_date, :end_date) < params.dig(:search, :release_date, :start_date)
+        redirect_to "/advsearch", alert: 'To Date cannot be less than From Date'
+        return
+      end
+      if params.dig(:search, :received_date, :end_date) < params.dig(:search, :received_date, :start_date)
+        redirect_to "/advsearch", alert: 'To Date cannot be less than From Date'
+        return
+      end
+    end
+  end
+
+  def check_if_all_empty_params
+    unless params[:search].nil?
+      if params.dig(:search, :title).blank? &&
+         params.dig(:search, :agency).blank? &&
+         params.dig(:search, :region).blank? &&
+         params.dig(:search, :release_date, :start_date).blank? &&
+         params.dig(:search, :release_date, :end_date).blank? &&
+         params.dig(:search, :received_date, :start_date).blank? &&
+         params.dig(:search, :received_date, :end_date).blank? &&
+         params.dig(:search, :aasm_state).blank?
+         redirect_to "/advsearch", alert: 'Please enter valid search parameters'
+      end
     end
   end
 end
