@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="/"><%= image_tag  "logo.png" %></a>
-  <a class="navbar-brand text-light" href="/">DEPARTMENT OF LABOR <br> NEWS RELEASE LOG</a>
+  <a class="navbar-brand" href="/"><%= image_tag  "logo.png", alt: "United States Department of Labor News Release Log" %></a>
+  <a class="navbar-brand text-light" href="/"><h1 class="dol-header-h1">DEPARTMENT OF LABOR <br> NEWS RELEASE LOG</h1></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -10,7 +10,7 @@
 
     <% if user_signed_in? %>
     <div class="dropdown">
-      <button class="btn btn-custom dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn user-navigation-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class='pr-2'><i class="fas fa-user"></i></span>
         <%= current_user.first_name %>
       </button>
