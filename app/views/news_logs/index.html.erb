@@ -1,10 +1,11 @@
+<% @title = 'News Release List - News Release Log - United States Department of Labor' %>
 <h1 class='d-inline-block'>News Release List</h1>
 <% if current_user.role.admin? || current_user.role.moderator? %>
   <%= link_to 'Create News Release', new_news_log_path, class: 'btn btn-dark float-right  mt-1 add-button' %>
 <% end %>
 
 <div class='table-responsive'>
-  <table id="newslog-table-sortable" class='table table-striped'>
+  <table id="newslog-table-sortable" class='table'>
     <thead>
       <tr>
         <th>Release# <i class="fa fa-fw fa-sort"></th>
@@ -22,7 +23,7 @@
     <tbody>
       <% @news_logs.each do |news_log| %>
         <tr>
-          <td><%= link_to "#{news_log.news_release_number}", news_log %></td>
+          <td><%= link_to "#{news_log.news_release_number}", news_log, class: 'nrl-number-link' %></td>
           <td><%= news_log.title.truncate(24) %></td>
           <td><%= news_log.user.initials %></td>
           <td><span class="p-2 mb-1 <%=status_color(news_log)%> rounded  text-white"> <%= news_log.aasm_state.capitalize %><span></td>
@@ -32,20 +33,20 @@
           <td><%= news_log.region.try(:name) %></td>
           <td class='text-center'>
             <% if policy(news_log).update? %>
-              <%= link_to edit_news_log_path(news_log) do %>
-                <i class='far fa-edit fa-2x' title='Edit NewsLog'></i>
+              <%= link_to edit_news_log_path(news_log), 'aria-label' => "Edit #{news_log.news_release_number}" do %>
+                <i class='far fa-edit fa-2x' aria-hidden='true' title='Edit'></i>
               <% end %>
             <% else %>
-                <i class='far fa-edit fa-2x custom-color-edit' title='Action not permitted' alt='Action not permitted'></i>
+                <i class='far fa-edit fa-2x edit-button-disabled' title='Action not permitted' alt='Action not permitted'></i>
             <% end %>
           </td>
           <td class='text-center'>
             <% if policy(news_log).destroy? %>
-              <%= link_to news_log, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= link_to news_log, method: :delete, data: { confirm: 'Are you sure?' }, 'aria-label' => "Delete #{news_log.news_release_number}"  do %>
                 <i class='far fa-trash-alt fa-2x' title='Delete'></i>
               <% end %>
             <% else %>
-                <i class='far fa-trash-alt fa-2x custom-color-trash' title='Action not permitted' alt='Action not permitted'></i>
+                <i class='far fa-trash-alt fa-2x trash-button-disabled' title='Action not permitted' alt='Action not permitted'></i>
             <% end %>
           </td>
         </tr>
