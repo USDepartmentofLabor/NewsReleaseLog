@@ -25,3 +25,31 @@ jQuery(function() {
 $(document).ready(function() {
   $("[id$=table-sortable]").tablesorter();
 });
+
+$("#release_start_date").datepicker({
+  numberOfMonths: 1,
+  onSelect: function(selected) {
+    $("#release_end_date").datepicker("option","minDate", selected)
+  }
+});
+
+$("#release_end_date").datepicker({ 
+  numberOfMonths: 1,
+  onSelect: function(selected) {
+     $("#release_start_date").datepicker("option","maxDate", selected)
+  }
+});
+
+$("#received_start_date").datepicker({
+  numberOfMonths: 1,
+  onSelect: function(selected) {
+    $("#received_end_date").datepicker("option","minDate", selected)
+  }
+});
+
+$("#received_end_date").datepicker({ 
+  numberOfMonths: 1,
+  onSelect: function(selected) {
+     $("#received_start_date").datepicker("option","maxDate", selected)
+  }
+});
