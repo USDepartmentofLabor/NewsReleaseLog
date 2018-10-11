@@ -1,3 +1,4 @@
+<% @title = "Editing News Release #{@news_log.news_release_number} - News Release Log - United States Department of Labor" %>
 <h1>Editing News Release</h1>
 <div class='mt-2 mb-3 p-3 bg-info rounded'>
    <strong> Current status of this news release is : <%= @news_log.aasm_state.capitalize %></strong>
@@ -5,5 +6,5 @@
 
 <%= render 'form', news_log: @news_log %>
 
-<%= link_to 'View', @news_log, class: "btn btn-primary" %>
-<%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>
+<%= link_to 'View', @news_log, class: "btn btn-dark btn-sm primary-action-button" %>
+<%= link_to 'Back', news_logs_path, class: "btn btn-dark btn-sm primary-action-button"  %>
