@@ -1,0 +1,72 @@
+/// Override Bootstrap buttons styling ///
+
+// Common style for all buttons
+.btn {
+  border-radius: 0;
+}
+
+// user navigation button
+.user-navigation-button {
+  background-color: $black;
+  color: $white;
+  margin-top: 2px;
+}
+
+// primary action buttons 
+.primary-action-button {
+  width: 10em;
+}
+
+// edit icon
+.fa-edit {
+  color: $black;
+}
+
+// disabled edit icon
+.edit-button-disabled {
+  color: lighten($black, 50%)
+}
+
+// delete icon
+.fa-trash-alt {
+  color: $trash-button-color;
+}
+
+// disabled delete icon
+.trash-button-disabled {
+  color: lighten($trash-button-color, 50%)
+}
+
+// sign-in button
+.sign-in-button {
+  color: $white;
+  background-color: $dol-header-background;
+}
+
+// reset password button
+.reset-button {
+  input {
+    background: $dol-header-background;
+    border: none;
+    line-height: normal;
+    padding: 10px;
+    border-radius: 5px;
+    color: $white;
+  }
+}
+
+// NRL number on index.html.erb styling
+.nrl-number-link {
+  color: $nrl-number-link-color;
+  font-size: 1.25em;
+}
+
+// Forgot password link styling
+.forgot-password-link {
+  color: $nrl-number-link-color;
+}
+
+// NRL file attachment link styling
+.nrl-file-link {
+  color: $nrl-number-link-color;
+}
