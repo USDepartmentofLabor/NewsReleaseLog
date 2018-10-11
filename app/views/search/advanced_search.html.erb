@@ -45,7 +45,7 @@
 
     <div class='form-group form-inline'>
       <% NewsLog::STATES.each do |state| %>
-        <%= check_box_tag "search[aasm_state][]", state, false, class: 'form-control-sm pl-2' -%>
+        <%= check_box_tag "search[aasm_state][]", state, true, class: 'form-control-sm pl-2' -%>
         <label for='aasm_state' class='mr-2 aasm-state-font'><%= state -%></label>
       <% end %>
       <br/>
