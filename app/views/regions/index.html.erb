@@ -16,7 +16,7 @@
     <tbody>
       <% @regions.each do |region| %>
         <tr>
-          <td class='font-weight-bold'%><%= link_to "#{region.name}", region %></td>
+          <td class='font-weight-bold'%><%= link_to "#{region.name}", region, class: 'nrl-number-link' %></td>
           <td class='font-weight-bold'><%= region.code %></td>
           <td class='text-center ml-2'>
             <% if policy(region).update? %>

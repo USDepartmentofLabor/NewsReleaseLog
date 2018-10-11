@@ -1,18 +1,45 @@
 <h1>Agency</h1>
-<p>
-  <strong>Agency Name:</strong>
-  <%= @agency.name %>
-</p>
+<div class="row mt-5">  
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        Agency Name
+      </div>
+      <div class="card-body">
+        <p><%= @agency.name %></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        Agency Code
+      </div>
+      <div class="card-body">
+        <p><%= @agency.code %></p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Agency Code:</strong>
-  <%= @agency.code %>
-</p>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        Frequently Used Code
+      </div>
+      <div class="card-body">
+        <p><%= @agency.frequently_used %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Frequently Used Code:</strong>
-  <%= @agency.frequently_used %>
-</p>
-
-<%= link_to 'Back', agencies_path, class: 'btn btn-dark btn-sm primary-action-button' %>
-<%= link_to 'Edit', edit_agency_path(@agency), class: 'btn btn-dark btn-sm primary-action-button' %>
+<div class="row mt-3">
+  <div class="col-sm-2">
+    <%= link_to 'Back', agencies_path, class: 'btn btn-dark btn-sm primary-action-button' %>
+  </div>
+  
+  <div class="col-sm-2">
+    <%= link_to 'Edit', edit_agency_path(@agency), class: 'btn btn-dark btn-sm primary-action-button' %>
+  </div>
+</div>

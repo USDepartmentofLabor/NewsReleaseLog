@@ -70,3 +70,21 @@
 .nrl-file-link {
   color: $nrl-number-link-color;
 }
+
+.status-card-bg {
+  background-color: $status-card-bg-color;
+  color: $white;
+}
+
+
+// Cards Styling
+
+.card-header {
+  background-color: $card-header-bg-color;
+  color: $white;
+  font-size: 1rem;
+}
+
+.card-body p {
+  font-size: 1rem;
+}

@@ -18,7 +18,7 @@
     <tbody>
       <% @distributionlists.each do |distributionlist| %>
         <tr>
-          <td class='font-weight-bold'><%= link_to "#{distributionlist.name}", distributionlist %></td>
+          <td class='font-weight-bold'><%= link_to "#{distributionlist.name}", distributionlist, class: 'nrl-number-link' %></td>
           <td><%= distributionlist.abbr %></td>
           <td><%= distributionlist.status %></td>
           <td><%= distributionlist.description %></td>

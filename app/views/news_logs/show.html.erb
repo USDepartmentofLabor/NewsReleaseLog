@@ -1,56 +1,143 @@
 <% @title = "View News Release #{@news_log.news_release_number} - News Release Log - United States Department of Labor" %>
-<div class='container justify-content-center'>
+<div class='justify-content-center'>
   <div>
-    <%= link_to 'History', history_news_log_path(@news_log), class: "btn btn-dark btn-sm primary-action-button"%>
-    <%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-dark btn-sm primary-action-button" %>
-    <div class='mb-3 p-3 bg-info rounded w-50 mt-4'>
-       <strong> Current status of this news release is : <%= @news_log.aasm_state.capitalize %></strong>
+    <!-- Row 1 -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body <%=status_color(@news_log)%> text-white text-center">
+            Current status of this news release is : <%= @news_log.aasm_state.capitalize %>
+          </div>
+        </div>
+      </div>
     </div>
-    <p>
-      <strong>News Release Number:</strong>
-      <%= @news_log.news_release_number %>
-    </p>
-     <p>
-      <strong>Received date:</strong>
-      <%= date_format @news_log.received_date %>
-    </p>
 
-    <p>
-     <strong>Release date:</strong>
-      <%= date_format @news_log.release_date %>
-    </p>
+    <!-- Row 2 -->
+    <div class="row mt-5"> 
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            News Release Number
+          </div>
+          <div class="card-body">
+            <h3 class="card-text nrl-file-link"><%= "#{@news_log.news_release_number}" %></h3>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            News Release Title
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= "#{@news_log.title}" %></p>
+          </div>
+        </div>
+      </div>
 
-    <p>
-      <strong>Title:</strong>
-      <%= @news_log.title %>
-    </p>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Received Date
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= "#{@news_log.received_date.try(:strftime, "%m/%d/%Y")}" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Row 3 -->
+    <div class="row mt-2"> 
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Release Date
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= "#{@news_log.release_date.try(:strftime, "%m/%d/%Y")}" %></p>
+          </div>
+        </div>
+      </div>
 
-    <p>
-      <strong>User:</strong>
-      <%= @news_log.user.full_name %>
-    </p>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Agency
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= "#{@news_log.agency.try(:name)} " %></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Region
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= "#{@news_log.region.try(:name)}" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <p>
-      <strong>Agency:</strong>
-      <%= @news_log.agency.try(:name) %>
-    </p>
+    <!-- Row 4 -->
+    <div class="row mt-2">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Document
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= link_to "#{grid_fs_filename @news_log}", get_document_news_log_path(@news_log), class: 'nrl-file-link' %></p>
+          </div>
+        </div>
+      </div>
 
-    <p>
-      <strong>Document:</strong>
-      <%=link_to "#{grid_fs_filename @news_log}", get_document_news_log_path(@news_log), class: 'nrl-file-link' %>
-    </p>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Distribution Lists
+          </div>
+          <div class="card-body">
+            <p class="card-text"><% @news_log.distributionlists.each do |d| %>
+              <%= d.name %></br>
+            <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Created by
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= "#{@news_log.user.full_name}" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <p>
-      <strong>Region:</strong>
-      <%= @news_log.region.try(:name) %>
-    </p>
+    <!-- Row 5 -->
+    <div class="row mt-5">
+      
+      <div class="col-sm-4">
+        <%= link_to 'Back', news_logs_path, class: "btn btn-dark btn-sm primary-action-button ml-5"%>
+      </div>
 
-    <p>
-      <strong>Distribution lists:</strong>
-      <% @news_log.distributionlists.each do |d| %>
-        <%=d.name%></br>
-      <%end%>
-    </p>
-    <%= link_to 'Back', news_logs_path, class: "btn btn-dark"  %>
+      <div class="col-sm-4">
+        <%= link_to 'History', history_news_log_path(@news_log), class: "btn btn-dark btn-sm primary-action-button"%>
+      </div>
+
+      <div class="col-sm-4">
+        <%= link_to 'Edit', edit_news_log_path(@news_log), class: "btn btn-dark btn-sm primary-action-button mr-5" %>
+      </div>
+
+    </div>
   </div>
 </div>

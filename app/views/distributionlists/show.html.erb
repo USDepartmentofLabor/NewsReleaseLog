@@ -1,24 +1,56 @@
 <h1> Distribution List </h1>
+<div class="row mt-5">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        Distribution Name
+      </div>
+      <div class="card-body">
+        <p><%= @distributionlist.name %></p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Distribution Name:</strong>
-  <%= @distributionlist.name %></p>
-</p>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        Abbreviation
+      </div>
+      <div class="card-body">
+        <p><%= @distributionlist.abbr %></p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Abbreviation:</strong>
-  <%= @distributionlist.abbr %>
-</p>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        Status
+      </div>
+      <div class="card-body">
+        <p><%= @distributionlist.status %></p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @distributionlist.status %>
-</p>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        Description
+      </div>
+      <div class="card-body">
+        <p><%= @distributionlist.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Description</strong>
-  <%= @distributionlist.description %>
-</p>
-
-<%= link_to 'Back', distributionlists_path, class: 'btn btn-dark btn-sm primary-action-button' %>
-<%= link_to 'Edit', edit_distributionlist_path(@distributionlist), class: 'btn btn-dark btn-sm primary-action-button' %>
+<div class="row mt-3">
+  <div class="col-sm-2">
+    <%= link_to 'Back', distributionlists_path, class: 'btn btn-dark btn-sm primary-action-button' %>
+  </div>
+  
+  <div class="col-sm-2">
+    <%= link_to 'Edit', edit_distributionlist_path(@distributionlist), class: 'btn btn-dark btn-sm primary-action-button' %>
+  </div>
+</div>

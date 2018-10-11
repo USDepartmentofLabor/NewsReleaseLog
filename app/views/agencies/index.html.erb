@@ -17,7 +17,7 @@
     <tbody>
       <% @agencies.each do |agency| %>
         <tr>
-          <td class='font-weight-bold'><%= link_to "#{agency.name}", agency %></td>
+          <td class='font-weight-bold'><%= link_to "#{agency.name}", agency, class: 'nrl-number-link' %></td>
           <td class='font-weight-bold'><%= agency.code %></td>
           <td class='font-weight-bold'><%= agency.frequently_used.to_s.upcase %></td>
           <td class='text-right ml-4'>
