@@ -52,9 +52,8 @@ class SearchController < ApplicationController
          params.dig(:search, :release_date, :start_date).blank? &&
          params.dig(:search, :release_date, :end_date).blank? &&
          params.dig(:search, :received_date, :start_date).blank? &&
-         params.dig(:search, :received_date, :end_date).blank? &&
-         params.dig(:search, :aasm_state).blank?
-         redirect_to "/advsearch", alert: 'Please enter valid search parameters'
+         params.dig(:search, :received_date, :end_date).blank?
+         redirect_to "/advsearch", alert: 'Please choose or enter one filter parameter'
       end
     end
   end
