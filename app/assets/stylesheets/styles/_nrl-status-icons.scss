@@ -1,0 +1,14 @@
+/// Custom color classes for accessibility ///
+// To change colors, change the variable value in variables.scss
+
+.archive-status-bg {
+  background-color: $archive-status-bg-color;
+}
+
+.published-status-bg {
+  background-color: $published-status-bg-color;
+}
+
+.review-status-bg {
+  background-color: $review-status-bg-color;
+}
