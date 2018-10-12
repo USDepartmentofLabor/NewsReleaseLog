@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy, :edit, :update]
+  before_action :set_user, only: [:show, :destroy, :edit, :update, :edit_password, :update_password]
   before_action :skip_password, only: [:update]
 
   def index
@@ -32,12 +32,28 @@ class Admin::UsersController < ApplicationController
    authorize @user
   end
 
+  def edit_password
+    authorize @user
+  end
+
   def update
     authorize @user
     if @user.update(user_params)
       redirect_to @user , :notice => "User updated successfully."
     else
       render 'edit', :alert => "Unable to update User!"
+    end
+  end
+
+  def update_password
+    authorize @user
+    if current_user.id == @user.id && user_params.dig(:password).present? && @user.update(user_params)
+      bypass_sign_in @user
+      redirect_to @user, notice: "User update successfully"
+    elsif @user.update(user_params)
+      redirect_to @user, notice: "User updated successfully"
+    else
+      render 'edit_password', alert: "Please verify the password inputs"
     end
   end
 
