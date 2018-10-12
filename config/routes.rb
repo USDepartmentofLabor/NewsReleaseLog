@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   root to: "news_logs#index"
   scope module: 'admin' do
     resources :users
+    get 'users/:id/password' => 'users#edit_password', as: 'admin_edit_user_password'
+    patch 'users/:id/user_password_update' => 'users#update_password', as: 'admin_update_user_password'
   end
 end

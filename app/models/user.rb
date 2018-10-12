@@ -47,6 +47,7 @@ class User
 
   validates_presence_of :first_name,:last_name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :password, :password_confirmation
   attr_accessor :skip_password_validation
 
   def initials
