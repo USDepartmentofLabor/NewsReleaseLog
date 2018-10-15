@@ -1,5 +1,9 @@
 <%= semantic_form_for @user do |f| %>
-  <%= f.inputs do %>
+<div class="btn-group-vertical pull-right">
+  <%= link_to "Change password", admin_edit_user_password_path(@user),:class => "btn btn-dark" %>
+</div>
+
+  <%= f.inputs class: "mt-4" do %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :email %>
