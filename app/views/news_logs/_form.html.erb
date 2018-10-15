@@ -35,6 +35,14 @@
         <%= f.input :document,:as => :file, input_html: { disabled: true } %>
       <% end %>
 
+      <% unless f.object.new_record? %>
+        <li class='formtastic'>
+          <label class="label formtastic-custom-label">Document Attached</label>
+          <%=link_to "#{grid_fs_filename @news_log}", get_document_news_log_path(@news_log), class: 'nrl-file-link formtastic-custom-link' %>
+        </li>
+      <% end %>
+
+
       <% if f.object.archived? %>
         <%= f.input :release_date, input_html: { 'value' => f.object.release_date.try(:strftime, "%m/%d/%Y"), :class =>"datepicker", :disabled => true } %>
       <% else %>
