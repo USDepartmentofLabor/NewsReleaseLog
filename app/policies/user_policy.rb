@@ -27,4 +27,12 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     user.role.admin?
   end
+
+  def edit_password?
+    user.role.admin?
+  end
+
+  def update_password?
+    user.role.admin?
+  end
 end
