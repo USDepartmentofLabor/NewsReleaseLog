@@ -31,8 +31,11 @@
 
       <% unless f.object.archived? %>
         <%= f.input :document,:as => :file %>
+         <% if f.object.persisted? %>
+          <span class="float-left"><%=link_to "#{grid_fs_filename f.object}", get_document_news_log_path(f.object) %></span> 
+        <% end %> 
       <% else %>
-        <%= f.input :document,:as => :file, input_html: { disabled: true } %>
+        <%= f.input :document,:as => :file, input_html: { disabled: true } %> 
       <% end %>
 
       <% unless f.object.new_record? %>
