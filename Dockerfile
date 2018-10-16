@@ -21,6 +21,11 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY --chown=app:app . $APP_HOME
 
 ADD env-config/news_log.conf /etc/nginx/sites-enabled/news_log.conf
+ADD env-config/dhparam.pem /etc/pki/tls/certs/dhparams.pem
+ADD env-config/star_dol_gov.crt /etc/pki/tls/certs/star_dol_gov.crt
+ADD env-config/newslog.gov.key /etc/pki/tls/private/newslog.gov.key
+RUN chmod 600 /etc/pki/tls/certs/star_dol_gov.crt /etc/pki/tls/private/newslog.gov.key /etc/pki/tls/certs/dhparams.pem
+
 COPY --chown=app:app env-config/mongodb-env.yml $APP_HOME/config/mongoid.yml
 
 RUN rvm-exec 2.5.1 bundle install
