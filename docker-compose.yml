@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - .mongo_data:/data/db
+  web:
+    env_file:
+      - env-config/secret_key.conf
+    image: nrl-webserver
+    restart: always
+    volumes:
+      - .:/home/app/webapp
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - db
