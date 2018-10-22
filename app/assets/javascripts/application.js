@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
-//= require jquery_ujs
+//= require jquery-ui
 //= require jquery-ui/widgets/datepicker
 //= require popper
 //= require bootstrap-sprockets
@@ -29,54 +29,54 @@ $(document).ready(function() {
 $("#release_start_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-    $("#release_end_date").datepicker("option","minDate", selected)
+    $("#release_end_date").datepicker("option", "minDate", selected)
   }
 });
 
 $("#release_end_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-     $("#release_start_date").datepicker("option","maxDate", selected)
+    $("#release_start_date").datepicker("option", "maxDate", selected)
   }
 });
 
 $("#received_start_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-    $("#received_end_date").datepicker("option","minDate", selected)
+    $("#received_end_date").datepicker("option", "minDate", selected)
   }
 });
 
 $("#received_end_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-     $("#received_start_date").datepicker("option","maxDate", selected)
+    $("#received_start_date").datepicker("option", "maxDate", selected)
   }
 });
 $("#release_start_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-    $("#release_end_date").datepicker("option","minDate", selected)
+    $("#release_end_date").datepicker("option", "minDate", selected)
   }
 });
 
-$("#release_end_date").datepicker({ 
+$("#release_end_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-     $("#release_start_date").datepicker("option","maxDate", selected)
+    $("#release_start_date").datepicker("option", "maxDate", selected)
   }
 });
 
 $("#received_start_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-    $("#received_end_date").datepicker("option","minDate", selected)
+    $("#received_end_date").datepicker("option", "minDate", selected)
   }
 });
 
-$("#received_end_date").datepicker({ 
+$("#received_end_date").datepicker({
   numberOfMonths: 1,
   onSelect: function(selected) {
-     $("#received_start_date").datepicker("option","maxDate", selected)
+    $("#received_start_date").datepicker("option", "maxDate", selected)
   }
 });
