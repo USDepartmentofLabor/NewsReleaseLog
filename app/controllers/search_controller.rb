@@ -13,21 +13,24 @@ class SearchController < ApplicationController
   end
 
   def advanced_search
-    if params[:search].present?
-      search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => {},:received_date=>{},:aasm_state =>[])
-      @results = NewsLog.filter(search_params.to_h)
-      if @results.present?
-       @page_results = Kaminari.paginate_array(@results).page(params[:page])
+    begin
+      if params[:search].present?
+        search_params= params.require(:search).permit(:title, :agency, :region ,:received_date,:release_date => {},:received_date=>{},:aasm_state =>[])
+        @results = NewsLog.filter(search_params.to_h)
+        if @results.present?
+          @page_results = Kaminari.paginate_array(@results).page(params[:page])
+        else
+          @page_results=[]
+        end
+        respond_to do |format|
+          format.html { render 'search' }
+          format.csv { send_data NewsLog.to_csv(@results), filename: "news-log-report-#{Date.today}.csv" }
+        end
       else
-        @page_results=[]
+        render 'advanced_search'
       end
-      # byebug
-      respond_to do |format|
-        format.html { render 'search' }
-        format.csv { send_data NewsLog.to_csv(@results), filename: "news-log-report-#{Date.today}.csv" }
-      end
-    else
-      render 'advanced_search'
+    rescue => e
+      redirect_to request.referer, alert: "Please check your input fields"
     end
   end
 
