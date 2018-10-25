@@ -103,7 +103,7 @@ class NewsLog
      CSV.generate(headers: true) do |csv|
       csv << %w{Release# Title ReleaseDate Received_Dates Status Agency Region}
        newslogs.all.each do |newslog|
-           csv << [newslog.news_release_number,newslog.title,newslog.release_date,newslog.received_date,newslog.aasm_state,newslog.agency.code, newslog.region.name]
+           csv << [newslog.news_release_number,newslog.title,newslog.release_date,newslog.received_date,newslog.aasm_state,newslog.agency.try(:code), newslog.region.try(:name)]
        end
      end
   end
