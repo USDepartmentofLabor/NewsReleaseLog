@@ -12,6 +12,7 @@
 //
 //= require jquery3
 //= require jquery-ui
+//= require jquery-ujs
 //= require jquery-ui/widgets/datepicker
 //= require popper
 //= require bootstrap-sprockets

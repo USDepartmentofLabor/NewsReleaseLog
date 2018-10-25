@@ -43,7 +43,6 @@ end
 puts "There are now #{Distributionlist.count} rows in the table Distributionlist"
 
 # Create Admin User
-# Create Admin User
 User.create(email: "nrladmin@dol.gov", password: "G*Yn7g<Ab-", password_confirmation: "G*Yn7g<Ab-" ,first_name: 'News', last_name: 'Release', role: :admin)
 
 puts "There are now #{User.count} documents in the User collection"
