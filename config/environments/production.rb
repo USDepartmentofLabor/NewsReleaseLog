@@ -62,10 +62,10 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "NewsReleaseLog_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => ENV["SERVER_URL"] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  # config.action_mailer.smtp_settings = { address: "mailserver.address", port: "25" }
+  config.action_mailer.smtp_settings = { address: ENV["MAIL_SERVER_HOST"], port: ENV["MAIL_SERVER_PORT"] }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
