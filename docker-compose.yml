@@ -6,7 +6,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - .mongo_data:/data/db
+      - /mnt/mongo/data:/data/db
   web:
     env_file:
       - env-config/secret_key.conf
@@ -14,6 +14,7 @@ services:
     restart: always
     volumes:
       - .:/home/app/webapp
+      - /mnt/logs/:/home/app/webapp/logs
     ports:
       - "80:80"
       - "443:443"
