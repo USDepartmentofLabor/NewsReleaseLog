@@ -1,24 +1,17 @@
-# README
+# News Release Log
+The is a web application that allows users to tract news releases
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Workflow of a news release log
 
-Things you may want to cover:
 
-* Ruby version
+### Development Environment
 
-* System dependencies
+#### (We assume that you have already installed docker or use this [how to install docker link](https://docs.docker.com/machine/install-machine/#install-bash-completion-scripts))
 
-* Configuration
+#### Then run the following commands to bring up the instances after cloning the code locally
 
-* Database creation
+    docker-compose up
 
-* Database initialization
+#### Once the web and db instances are up without any issues create the db and run the migrations
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    docker-compose exec web bundle exec rake db:seed
