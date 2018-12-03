@@ -1,5 +1,5 @@
 # News Release Log
-The is a web application that allows users to tract news releases
+The is a web application that allows users to track news releases
 
 ## Workflow of a news release log
 
