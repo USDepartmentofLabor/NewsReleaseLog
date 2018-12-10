@@ -1,8 +1,5 @@
-<%= semantic_form_for @user do |f| %>
-<div class="btn-group-vertical pull-right">
-  <%= link_to "Change password", admin_edit_user_password_path(@user),:class => "btn btn-dark" %>
-</div>
-
+<h6><span style="color: #e31c3d;">*</span> Indicates a required field</h6>
+<%= semantic_form_for @user, :html => { class: "m-5 newslog-form" } do |f| %>
   <%= f.inputs class: "mt-4" do %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
