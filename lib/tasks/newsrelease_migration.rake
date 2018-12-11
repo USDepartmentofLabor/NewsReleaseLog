@@ -1,4 +1,4 @@
-# This rake task will migrate records from Old NewsRelease log to New NewsReleaseLog Applicatioin 
+# This rake task will migrate records from Old NewsRelease log to New NewsReleaseLog Applicatioin
 # Production: RAILS_ENV=production bundle exec rake migration:newsrelease_migration
 # Local: bundle exec rake migration:newsrelease_migration
 namespace :migration do
@@ -7,7 +7,7 @@ namespace :migration do
    require 'csv'
 
 	header = []
-	File.foreach(Rails.root.join('dump', 'temp.csv')) do |csv_line|
+	File.foreach(Rails.root.join('dump', 'datadump.csv')) do |csv_line|
 	  row = CSV.parse(csv_line.scrub.gsub(/'|\"/,''),:encoding => 'ISO-8859-1:utf-8').first
 	  if header.empty?
 	    header = row.map(&:to_sym)
@@ -43,6 +43,6 @@ namespace :migration do
 	  else
 	    puts "Unable to save #{d.errors.full_messages}"
 	  end
-	end     
+	end
  end
 end
