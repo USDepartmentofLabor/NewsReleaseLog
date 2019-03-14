@@ -4,7 +4,7 @@ namespace :migration do
     require 'spreadsheet'
 
     Spreadsheet.client_encoding = 'UTF-8'
-    news_log_book = Spreadsheet.open(Rails.root.join('dump', 'news-log-prod.xls'))
+    news_log_book = Spreadsheet.open(Rails.root.join('dump', 'document_test.xls'))
     news_log_sheet = news_log_book.worksheet 0
     
     header = []
@@ -38,6 +38,10 @@ namespace :migration do
       d.received_date = row[:ReceivedDate]
       d.release_date = row[:ReleaseDate]
       d.news_release_number = row[:OPASeqnum2]
+      document_path = Rails.root.join("public", "attachments", "#{row[:TitleFile]}")
+      if File.exist?(document_path)
+        d.document = File.open(Rails.root.join("public", "attachments", "#{row[:TitleFile]}"))
+      end
       d.aasm_state ="published"
       d.agency = agency.id
       d.region = region.id
