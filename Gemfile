@@ -70,6 +70,9 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use spreadsheet gem to read excel fil
+gem 'spreadsheet', '~> 1.2', '>= 1.2.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

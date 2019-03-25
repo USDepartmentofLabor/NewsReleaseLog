@@ -15,6 +15,11 @@ rerun.txt
 pickle-email-*.html
 config/initializers/secret_token.rb
 config/master.key
+script/*
+dev.Dockerfile
+docker-compose-dev.yml
+entrypoint.sh
+lib/tasks/results/failures.log
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml
