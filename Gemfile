@@ -5,11 +5,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Specifying the ruby version to make sure it stays consistent through out the application
+ruby "2.5.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
+#
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+#gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12', '>= 3.12.1'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,7 +49,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 #Authentication
-gem 'devise'
+gem 'devise', '~> 4.4', '>= 4.4.3'
 
 # Authorization
 gem 'pundit'
@@ -78,7 +83,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec-rails"
   gem 'mongoid-rspec'
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '~> 4.11', '>= 4.11.1'
   gem "database_cleaner"
 end
 
