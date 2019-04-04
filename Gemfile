@@ -5,36 +5,40 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Specifying the ruby version to make sure it stays consistent through out the application
+ruby "2.5.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
+
+# A Ruby/Rack web server built for concurrency
+gem 'puma', '~> 3.12', '>= 3.12.1'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-# Database
-gem 'mongoid', '~> 6.2.0'
+
+# Mongoid is an ODM (Object-Document-Mapper) framework for MongoDB in Ruby.
+gem 'mongoid', '6.2.1'
 
 # Frontend web framework for styling
-gem 'bootstrap', '~> 4.1.3'
-gem 'formtastic', '~> 3.0'
+gem 'bootstrap', '4.1.3'
 
-#adding font awesome
+# A Rails form builder plugin with semantically rich and accessible markup.
+gem 'formtastic', '3.1.5'
+
+# font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 
 # Addition dependency for bootstrap
@@ -43,43 +47,41 @@ gem 'jquery-rails'
 # JQuery UI Datepicker
 gem 'jquery-ui-rails'
 
-#Authentication
-gem 'devise'
+# Flexible authentication solution for Rails with Warden.
+gem 'devise', '4.6.2'
 
-# Authorization
-gem 'pundit'
+# Minimal authorization through OO design and pure Ruby classes
+gem 'pundit', '1.1.0'
 
-#State machine
-gem 'aasm'
+# AASM - State machines for Ruby classes (plain Ruby, ActiveRecord, Mongoid)
+gem 'aasm', '4.12.3'
 
-# Add kaminari for pagination
-gem 'kaminari'
-gem 'kaminari-mongoid'
-gem 'kaminari-actionview'
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
+gem 'kaminari', '1.1.1'
+gem 'kaminari-mongoid', '1.0.1'
+gem 'kaminari-actionview', '1.1.1'
 
-# Auditing mongodb documents
-gem 'mongoid-history'
+# Multi-user non-linear history tracking, auditing, undo, redo for mongoid.
+gem 'mongoid-history', '0.8.1'
 
-# Adding enumerize attributes
-gem 'enumerize', '~> 2.2', '>= 2.2.2'
+# Enumerated attributes with I18n and ActiveRecord/Mongoid support
+gem 'enumerize', '2.2.2'
 
-# File upload
-gem 'carrierwave'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
+gem 'carrierwave', '1.2.3'
+# Mongoid support for CarrierWave
+gem 'carrierwave-mongoid', '1.1.0', :require => 'carrierwave/mongoid'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use spreadsheet gem to read excel fil
-gem 'spreadsheet', '~> 1.2', '>= 1.2.2'
+# The Spreadsheet Library is designed to read and write Spreadsheet Documents. Spreadsheet can read, write and modify Spreadsheet Documents.
+gem 'spreadsheet', '1.2.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem "rspec-rails"
-  gem 'mongoid-rspec'
-  gem 'factory_bot_rails'
-  gem "database_cleaner"
+  gem 'byebug', '10.0.2', platforms: [:mri, :mingw, :x64_mingw]
+  gem "rspec-rails", '3.7.2'
+  gem 'mongoid-rspec', '4.0.1'
+  gem 'factory_bot_rails', '4.10.0'
+  gem "database_cleaner", '1.7.0'
 end
 
 group :development do
@@ -88,7 +90,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
