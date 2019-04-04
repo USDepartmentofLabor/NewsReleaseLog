@@ -1,22 +1,16 @@
 version: '3'
 services:
-  db:
-    image: mongo
-    restart: always
-    ports:
-      - "27017:27017"
-    volumes:
-      - /mnt/mongo/data:/data/db
   web:
-    env_file:
-      - env-config/secret_key.conf
-    image: nrl-webserver
+    build:
+      context: .
+    env_file: ./env-config/secret_key.env
+    image: nrlweb:v1.0.0
     restart: always
     volumes:
-      - .:/home/app/webapp
-      - /mnt/logs/:/home/app/webapp/logs
+      - /nrl-mount/logs/:/home/app/webapp/logs
+      - /nrl-mount/nginx-log:/var/log/nginx
+      - /nrl-mount/app-logs:/var/log
+      - /nrl-mount/attachments:/home/app/webapp/public/attachments
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - db

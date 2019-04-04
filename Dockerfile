@@ -7,7 +7,7 @@ ENV RAILS_ENV production
 ENV RACK_ENV production
 #Install yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN curl -sL https://deb.nodesource.com/setup_5.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # Get the update packages and tzdata
