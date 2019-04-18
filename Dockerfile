@@ -34,6 +34,8 @@ ADD env-config/star_dol_gov.crt /etc/pki/tls/certs/star_dol_gov.crt
 ADD env-config/newslog.gov.key /etc/pki/tls/private/newslog.gov.key
 ADD env-config/secret_key.conf /etc/nginx/main.d/secret_key.conf
 ADD env-config/mongodb-env.yml $APP_HOME/config/mongoid.yml
+ADD env-config/seeds.rb $APP_HOME/db/seeds.rb
+ADD env-config/import_from_excel.rake $APP_HOME/lib/tasks/import_from_excel.rake
 
 #Update file ownerships
 RUN chmod 600 /etc/pki/tls/certs/star_dol_gov.crt /etc/pki/tls/private/newslog.gov.key /etc/pki/tls/certs/dhparams.pem
