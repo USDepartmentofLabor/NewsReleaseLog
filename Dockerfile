@@ -1,33 +1,68 @@
-FROM phusion/passenger-ruby25:0.9.35
+FROM opanewsrelease-local.artifactory.dol.gov/rhelimage:latest
 
-# Set correct environment variables.
+## Enabling RHEL 7 repositories to install packages
+RUN yum-config-manager --enable rhel-server-rhscl-7-rpms \
+    rhel-7-server-optional-rpms \
+    rhel-7-server-extras-rpms \
+    rhel-7-server-rpms \
+    rhel-7-server-eus-rpms
+
+# Update the base packages
+RUN yum update -y && yum clean all
+
+## Install NodeJS 8
+RUN yum install -y gcc-c++ make \
+ && curl -sL https://rpm.nodesource.com/setup_8.x | bash - \
+ && yum install -y nodejs \
+ && yum clean all
+
+## Install Yarn
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
+ && yum install -y yarn \
+ && yum clean all
+
+## Install stable ruby with rails
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+SHELL [ "/bin/bash", "-l", "-c" ]
+RUN \curl https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
+RUN source /etc/profile.d/rvm.sh && rvm reload
+
+RUN yum install -y patch autoconf automake bison bzip2 libffi-devel libtool patch readline-devel ruby sqlite-devel zlib-devel openssl-devel && yum clean all
+RUN rvm install ruby-2.6.3 --no-docs
+
+RUN rvm use --default 2.6.3
+
+# Set environment variables
 ENV HOME /root
-ENV APP_HOME /home/app/webapp
+ENV APP_HOME /webapp
 ENV RAILS_ENV production
 ENV RACK_ENV production
-#Install yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-# Get the update packages and tzdata
-RUN apt-get update && apt-get install -y tzdata yarn nodejs
-
-
-# Use baseimage-docker's init process.
-CMD ["/sbin/my_init"]
-
-EXPOSE 80 443
 
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-RUN rm -f /etc/service/nginx/down
-RUN rm /etc/nginx/sites-enabled/default
+COPY ./Gemfile Gemfile.lock $APP_HOME/
 
-COPY --chown=app:app . $APP_HOME
+RUN bundle install --clean --deployment
 
-# Copy environment specific files
+## Adding Passenger Repo
+RUN curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo
+
+RUN yum-config-manager --enable epel cr
+
+RUN yum install -y libcurl-devel \
+    epel-release \
+ && yum clean all
+
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum clean all
+
+RUN yum install -y nginx passenger && yum clean all
+
+RUN yum clean packages && yum clean metadata && yum clean headers
+
+COPY . $APP_HOME
+
+## Copy environment specific files into image
 ADD env-config/news_log.conf /etc/nginx/sites-enabled/news_log.conf
 ADD env-config/dhparam.pem /etc/pki/tls/certs/dhparams.pem
 ADD env-config/star_dol_gov.crt /etc/pki/tls/certs/star_dol_gov.crt
@@ -37,14 +72,12 @@ ADD env-config/mongodb-env.yml $APP_HOME/config/mongoid.yml
 ADD env-config/seeds.rb $APP_HOME/db/seeds.rb
 ADD env-config/import_from_excel.rake $APP_HOME/lib/tasks/import_from_excel.rake
 
-#Update file ownerships
+COPY . $APP_HOME
+
 RUN chmod 600 /etc/pki/tls/certs/star_dol_gov.crt /etc/pki/tls/private/newslog.gov.key /etc/pki/tls/certs/dhparams.pem
-RUN chown app:app $APP_HOME/config/mongoid.yml
 
-RUN rvm-exec 2.5.1 bundle install
-RUN /bin/bash -l -c "rvm use 2.5.1; rvm @global do gem install bundler"
 RUN RAILS_ENV=production SECRET_KEY_BASE=$SECRET_KEY_BASE bundle exec rake assets:precompile
-RUN chown -R app:app $APP_HOME/tmp
 
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+CMD ["passenger", "start"]
+
+EXPOSE 80 443
