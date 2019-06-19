@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'mongoid', '6.2.1'
 
 # Frontend web framework for styling
-gem 'bootstrap', '4.1.3'
+gem 'bootstrap', '4.3.1'
 
 # A Rails form builder plugin with semantically rich and accessible markup.
 gem 'formtastic', '3.1.5'
