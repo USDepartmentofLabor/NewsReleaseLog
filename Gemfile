@@ -42,7 +42,7 @@ gem 'formtastic', '3.1.5'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 
 # Addition dependency for bootstrap
-gem 'jquery-rails'
+gem 'jquery-rails', '4.3.5'
 
 # JQuery UI Datepicker
 gem 'jquery-ui-rails'
