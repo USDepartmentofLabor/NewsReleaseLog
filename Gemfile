@@ -42,7 +42,7 @@ gem 'formtastic', '3.1.5'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 
 # Addition dependency for bootstrap
-gem 'jquery-rails'
+gem 'jquery-rails', '4.3.5'
 
 # JQuery UI Datepicker
 gem 'jquery-ui-rails'
@@ -74,6 +74,8 @@ gem 'carrierwave-mongoid', '1.1.0', :require => 'carrierwave/mongoid'
 
 # The Spreadsheet Library is designed to read and write Spreadsheet Documents. Spreadsheet can read, write and modify Spreadsheet Documents.
 gem 'spreadsheet', '1.2.2'
+
+gem 'nokogiri', '~>1.10.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
