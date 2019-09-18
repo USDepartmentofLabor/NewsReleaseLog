@@ -1,0 +1,3 @@
+[submodule "env-config"]
+	path = env-config
+        url = #set in git config, will be updated in the submodule README
