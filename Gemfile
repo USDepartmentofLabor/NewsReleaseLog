@@ -12,7 +12,7 @@ ruby "2.6.3"
 gem 'rails', '~> 5.1.6'
 
 # A Ruby/Rack web server built for concurrency
-gem 'puma', '~> 3.12', '>= 3.12.1'
+gem 'puma', '~> 3.12'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
