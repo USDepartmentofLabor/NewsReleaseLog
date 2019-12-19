@@ -48,7 +48,7 @@ gem 'jquery-rails', '4.3.5'
 gem 'jquery-ui-rails'
 
 # Flexible authentication solution for Rails with Warden.
-gem 'devise', '4.6.2'
+gem 'devise', '4.7.1'
 
 # Minimal authorization through OO design and pure Ruby classes
 gem 'pundit', '1.1.0'
