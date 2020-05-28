@@ -57,9 +57,9 @@ gem 'pundit', '1.1.0'
 gem 'aasm', '4.12.3'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
-gem 'kaminari', '1.1.1'
+gem 'kaminari', '1.2.1'
 gem 'kaminari-mongoid', '1.0.1'
-gem 'kaminari-actionview', '1.1.1'
+gem 'kaminari-actionview', '1.2.1'
 
 # Multi-user non-linear history tracking, auditing, undo, redo for mongoid.
 gem 'mongoid-history', '0.8.1'
