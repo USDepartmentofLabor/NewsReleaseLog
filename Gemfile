@@ -75,7 +75,7 @@ gem 'carrierwave-mongoid', '1.1.0', :require => 'carrierwave/mongoid'
 # The Spreadsheet Library is designed to read and write Spreadsheet Documents. Spreadsheet can read, write and modify Spreadsheet Documents.
 gem 'spreadsheet', '1.2.2'
 
-gem 'nokogiri', '~>1.10.8'
+gem 'nokogiri', '~>1.11.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
